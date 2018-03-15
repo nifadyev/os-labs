@@ -1,0 +1,369 @@
+From: <Saved by Windows Internet Explorer 8>
+Subject: =?windows-1251?B?1PPt6vbo/yBUaHJlYWRQcm9j?=
+Date: Mon, 24 Oct 2011 11:10:28 +0400
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0005_01CC923D.89436EE0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.6109
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0005_01CC923D.89436EE0
+Content-Type: text/html;
+	charset="windows-1251"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_threadproc.htm
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns:mso =3D "urn:schemas-microsoft-com:office:office" xmlns:msdt =
+=3D=20
+"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><HEAD><TITLE>=D4=F3=ED=EA=F6=E8=
+=FF ThreadProc</TITLE>
+<SCRIPT type=3Dtext/javascript>var y5_pageId =3D 6259; var y5_statId =3D =
+0; document.write('<sc' + 'ript type=3D"text/javascript" =
+src=3D"http://bs.yandex.ru/resource/narod_init.js?rnd=3D' + =
+Math.round(Math.random() * 100000) + '"></sc' + 'ript>');</SCRIPT>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:Categories msdt:dt=3D"string">=C1=E0=E7=EE=E2=FB=E5 =
+=EF=EE=ED=FF=F2=E8=FF;=D1=EF=F0=E0=E2=EE=F7=ED=FB=E9 =
+=EC=E0=F2=E5=F0=E8=E0=EB</mso:Categories>
+<mso:Approval_x0020_Level msdt:dt=3D"string"></mso:Approval_x0020_Level>
+<mso:Assigned_x0020_To msdt:dt=3D"string">=C2=EB=E0=E4=E8=EC=E8=F0 =
+=D1=EE=EA=EE=E2=E8=EA=EE=E2</mso:Assigned_x0020_To>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+<META content=3D"text/html; charset=3Dwindows-1251" =
+http-equiv=3DContent-Type>
+<META content=3Dru http-equiv=3DContent-Language>
+<META name=3Dkeywords=20
+content=3D"=EF=F0=EE=F6=E5=F1=F1, =EF=EE=F2=EE=EA, =ED=E8=F2=FC, =
+=EC=ED=EE=E3=EE=E7=E0=E4=E0=F7=ED=EE=F1=F2=FC, =
+=E4=E8=F1=EF=E5=F2=F7=E5=F0=E8=E7=E0=F6=E8=FF, =
+=EC=ED=EE=E3=EE=EF=EE=F2=EE=F7=ED=EE=F1=F2=FC, =EA=EE=ED=F2=E5=EA=F1=F2 =
+=EF=EE=F2=EE=EA=E0, =F0=E0=E1=EE=F7=E8=E9 =EA=EE=EC=EF=EB=E5=EA=F2, =
+=EE=E1=FA=E5=EA=F2 =E7=E0=E4=E0=ED=E8=FF,  =EF=F0=E8=EE=F0=E8=F2=E5=F2">
+<META name=3Ddescription content=3D"=CE=EF=E8=F1=E0=ED=E8=E5 =
+=F4=F3=ED=EA=F6=E8=E8 ThreadProc">
+<META name=3DGENERATOR content=3D"MSHTML 8.00.6001.19154"><!--vs-->
+<META name=3DProgId content=3DFrontPage.Editor.Document></HEAD>
+<BODY background=3Dhttp://vsokovikov.narod.ru/New_MSDN_API/image/45.gif>
+<DIV=20
+style=3D"BACKGROUND: =
+url(http://www.tns-counter.ru/V13a****yandex_ru/ru/CP1251/tmsec=3Dnarod_t=
+otal/)"></DIV>
+<H1><FONT size=3D4 face=3DArial>=D4=F3=ED=EA=F6=E8=FF <FONT =
+color=3D#0000ff>ThreadProc=20
+</FONT></FONT></H1>
+<HR SIZE=3D4>
+<FONT size=3D2 face=3DArial>
+<P>=D4=F3=ED=EA=F6=E8=FF </FONT><B><FONT size=3D2 =
+face=3DArial>ThreadProc</FONT></B><FONT size=3D2=20
+face=3DArial> - =EE=EF=F0=E5=E4=E5=EB=FF=E5=EC=E0=FF =
+=EF=F0=EE=E3=F0=E0=EC=EC=EE=E9 =F4=F3=ED=EA=F6=E8=FF, =
+=EA=EE=F2=EE=F0=E0=FF =F1=EB=F3=E6=E8=F2 =EA=E0=EA =
+=ED=E0=F7=E0=EB=FC=ED=FB=E9=20
+=E0=E4=F0=E5=F1 =E4=EB=FF =EF=EE=F2=EE=EA=E0. =
+=CE=EF=F0=E5=E4=E5=EB=FF=E5=F2=F1=FF =FD=F2=EE=F2 =E0=E4=F0=E5=F1 =
+=EF=F0=E8 =E2=FB=E7=EE=E2=E5 =F4=F3=ED=EA=F6=E8=E8 </FONT><B><FONT=20
+color=3D#0000ff size=3D2 face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_createt=
+hread.htm">CreateThread</A></FONT></B><FONT=20
+size=3D2 face=3DArial> =E8=EB=E8 </FONT><B><FONT color=3D#0000ff =
+size=3D2 face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_creater=
+emotethread.htm">CreateRemoteThread</A></FONT></B><FONT=20
+size=3D2 face=3DArial>. =D2=E8=EF </FONT><B><FONT color=3D#800000 =
+size=3D2=20
+face=3DArial>LPTHREAD_START_ROUTINE</FONT></B><FONT size=3D2 =
+face=3DArial> =EE=EF=F0=E5=E4=E5=EB=FF=E5=F2=20
+=F3=EA=E0=E7=E0=F2=E5=EB=FC =ED=E0 =FD=F2=F3 =F4=F3=ED=EA=F6=E8=FE =
+=EF=EE=E2=F2=EE=F0=ED=EE=E3=EE =E2=FB=E7=EE=E2=E0. </FONT><B><FONT =
+size=3D2=20
+face=3DArial>ThreadProc</FONT></B><FONT size=3D2 face=3DArial> =
+=FF=E2=EB=FF=E5=F2=F1=FF =F1=E8=EC=E2=EE=EB=EE=EC -=20
+=E7=E0=EC=E5=F1=F2=E8=F2=E5=EB=E5=EC =E4=EB=FF =
+=EE=EF=F0=E5=E4=E5=EB=FF=E5=EC=EE=E3=EE =EF=F0=EE=E3=F0=E0=EC=EC=EE=E9 =
+=E8=EC=E5=ED=E8 =F4=F3=ED=EA=F6=E8=E8.</FONT><FONT=20
+face=3DArial></P></FONT><B>
+<P><FONT face=3DArial>=D1=E8=ED=F2=E0=EA=F1=E8=F1&nbsp; </FONT></P>
+<TABLE border=3D1 cellSpacing=3D0 cellPadding=3D10 width=3D"100%" =
+bgColor=3D#ffffcc>
+  <TBODY>
+  <TR>
+    <TD width=3D"100%"><B>
+      <BLOCKQUOTE>
+        <P><FONT size=3D2 face=3D"Courier New">DWORD WINAPI=20
+        ThreadProc(&nbsp;</FONT></P>
+        <BLOCKQUOTE>
+          <P><FONT size=3D2 face=3D"Courier New">LPVOID</FONT></B><FONT =
+size=3D2=20
+          face=3D"Courier New"><I> lpParameter</I>&nbsp;&nbsp; <FONT=20
+          color=3D#0000ff>//</FONT> <FONT =
+color=3D#008000>=E4=E0=ED=ED=FB=E5=20
+          =EF=EE=F2=EE=EA=E0&nbsp;</FONT></FONT></P></BLOCKQUOTE>
+        <P><B><FONT size=3D2 face=3D"Courier New">);</FONT>=20
+  </B></P></BLOCKQUOTE></TD></TR></TBODY></TABLE></B><FONT face=3DArial>
+<H4>=CF=E0=F0=E0=EC=E5=F0=FB</H4></FONT><B><I><FONT size=3D2 =
+face=3DArial>
+<P>lpParameter</FONT></I></B></P><FONT size=3D2 face=3DArial>
+<P>[in] =C4=E0=ED=ED=FB=E5 =EF=EE=F2=EE=EA=E0 =
+=EF=E5=F0=E5=F1=FB=EB=E0=E5=EC=FB=E5 =E2 =F4=F3=ED=EA=F6=E8=FE, =
+=EA=EE=F2=EE=F0=E0=FF =E8=F1=EF=EE=EB=FC=E7=F3=FF =
+=EF=E0=F0=E0=EC=E5=F2=F0=20
+<B><I>lpParameter</I></B> =F4=F3=ED=EA=F6=E8=E8 </FONT><B><FONT size=3D2 =
+
+face=3DArial>CreateThread</FONT></B><FONT size=3D2 face=3DArial> =
+=E8=EB=E8 </FONT><B><FONT=20
+size=3D2 face=3DArial>CreateRemoteThread.</FONT></P></B><FONT =
+face=3DArial>
+<H4>=C2=EE=E7=E2=F0=E0=F9=E0=E5=EC=FB=E5 =
+=E7=ED=E0=F7=E5=ED=E8=FF</H4></FONT><FONT size=3D2 face=3DArial>
+<P>=D4=F3=ED=EA=F6=E8=FF =E4=EE=EB=E6=ED=E0 =
+=E2=EE=E7=E2=F0=E0=F2=E8=F2=FC =E7=ED=E0=F7=E5=ED=E8=E5, =
+=EA=EE=F2=EE=F0=EE=E5 =F3=EA=E0=E7=FB=E2=E0=E5=F2 =E5=E5 =F3=F1=EF=E5=F5 =
+=E8=EB=E8=20
+=ED=E5=F3=E4=E0=F7=F3.</FONT><FONT face=3DArial></P></FONT><FONT =
+size=3D2 face=3DArial></FONT><FONT=20
+face=3DArial>
+<H4>=C7=E0=EC=E5=F7=E0=ED=E8=FF</H4></FONT><FONT size=3D2 face=3DArial>
+<P>=CF=F0=EE=F6=E5=F1=F1 =EC=EE=E6=E5=F2 =EF=EE=EB=F3=F7=E8=F2=FC =
+=E2=EE=E7=E2=F0=E0=F9=E0=E5=EC=EE=E5 =E7=ED=E0=F7=E5=ED=E8=E5 =
+=F4=F3=ED=EA=F6=E8=E8 </FONT><B><FONT size=3D2=20
+face=3DArial>ThreadProc</FONT></B><FONT size=3D2 face=3DArial> =
+=EF=EE=F2=EE=EA=E0, =EA=EE=F2=EE=F0=FB=E9 =E5=E5=20
+=F1=EE=E7=E4=E0=EB =F4=F3=ED=EA=F6=E8=E5=E9 </FONT><B><FONT size=3D2 =
+face=3DArial>CreateThread</FONT></B><FONT=20
+size=3D2 face=3DArial>, =EF=F0=E8 =EF=EE=EC=EE=F9=E8 =E2=FB=E7=EE=E2=E0 =
+=F4=F3=ED=EA=F6=E8=E8 </FONT><B><FONT color=3D#0000ff=20
+size=3D2 face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_getexit=
+codethread.htm">GetExitCodeThread</A></FONT></B><FONT=20
+size=3D2 face=3DArial>. =CF=F0=EE=F6=E5=F1=F1 =ED=E5 =EC=EE=E6=E5=F2 =
+=EF=EE=EB=F3=F7=E8=F2=FC =E2=EE=E7=E2=F0=E0=F9=E0=E5=EC=EE=E5 =
+=E7=ED=E0=F7=E5=ED=E8=E5 =EE=F2=20
+</FONT><B><FONT size=3D2 face=3DArial>ThreadProc</FONT></B><FONT =
+size=3D2 face=3DArial>=20
+=EF=EE=F2=EE=EA=E0, =EA=EE=F2=EE=F0=FB=E9 =E5=E5 =F1=EE=E7=E4=E0=EB =
+=F4=F3=ED=EA=F6=E8=E5=E9 </FONT><B><FONT size=3D2=20
+face=3DArial>CreateRemoteThread</FONT></B><FONT size=3D2 =
+face=3DArial>.</FONT><FONT=20
+face=3DArial></P></FONT><FONT size=3D2 face=3DArial></FONT><FONT =
+face=3DArial>
+<H4>=D1=EC=EE=F2=F0=E8 =F2=E0=EA=E6=E5</H4><!--vs--></FONT>
+<P><FONT size=3D2 face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/ogl_proces=
+s.htm">=CA=F0=E0=F2=EA=E8=E9=20
+=EE=E1=E7=EE=F0 =CF=F0=EE=F6=E5=F1=F1=FB =E8 =EF=EE=F2=EE=EA=E8</A>, <A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_process=
+_thread.htm">=D4=F3=ED=EA=F6=E8=E8,=20
+=E8=F1=EF=EE=EB=FC=E7=F3=E5=EC=FB=E5 =EF=F0=EE=F6=E5=F1=F1=E0=EC=E8 =E8 =
+=EF=EE=F2=EE=EA=E0=EC=E8</A>, </FONT><B><FONT color=3D#0000ff size=3D2=20
+face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_createt=
+hread.htm">CreateThread</A></FONT></B><FONT=20
+size=3D2 face=3DArial>, </FONT><B><FONT color=3D#0000ff size=3D2 =
+face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_creater=
+emotethread.htm">CreateRemoteThread</A></FONT></B><FONT=20
+size=3D2 face=3DArial>, </FONT><B><FONT color=3D#0000ff size=3D2 =
+face=3DArial><A=20
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/Process_thread/fn_getexit=
+codethread.htm">GetExitCodeThread</A></FONT></B><FONT=20
+size=3D2 face=3DArial></P></FONT>
+<CENTER>
+<TABLE border=3D0 cellSpacing=3D0 width=3D"70%" bgColor=3D#ededed>
+  <TBODY>
+  <TR>
+    <TD bgColor=3D#c0c0c0 vAlign=3Dtop width=3D"100%" colSpan=3D2=20
+      align=3Dmiddle><B><FONT size=3D2 face=3DArial>
+      <P>=D0=E0=E7=EC=E5=F9=E5=ED=E8=E5 =E8 =
+=F1=EE=E2=EC=E5=F1=F2=E8=EC=EE=F1=F2=FC =
+ThreadProc</FONT></B></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows. NET Server</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows XP</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows 2000</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows NT</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0 =E2=E5=F0=F1=E8=E8 3.1 =E8 =
+=E2=FB=F8=E5</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows Me</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows 98</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Windows 95</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=C4=E0</FONT></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>=C8=F1=EF=EE=EB=FC=E7=F3=E5=EC=E0=FF =
+=E1=E8=E1=EB=E8=EE=F2=E5=EA=E0</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><B><FONT color=3D#000080 size=3D2 =
+face=3DArial>
+      <P>-</FONT></B></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>=C7=E0=E3=EE=EB=EE=E2=EE=F7=ED=FB=E9 =
+=F4=E0=E9=EB</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%">&nbsp;</TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><FONT size=3D2 face=3DArial>
+      <P>- =EE=E1=FA=FF=E2=EB=E5=ED=EE =E2</FONT></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><B><FONT color=3D#000080 size=3D2 =
+face=3DArial>
+      <P>Winbase.h</FONT></B></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><FONT size=3D2 face=3DArial>
+      <P>- =E2=EA=EB=FE=F7=E5=ED=EE =E2</FONT></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><B><FONT color=3D#000080 size=3D2 =
+face=3DArial>
+      <P>Windows.h</FONT></B></P></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>Unicode</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT face=3DArial>
+      <P><FONT size=3D2>=CD=E5=F2</FONT></P></FONT></TD></TR>
+  <TR>
+    <TD vAlign=3Dtop width=3D"48%"><B><FONT size=3D2 face=3DArial>
+      <P>=C7=E0=EC=E5=F7=E0=ED=E8=FF =EF=EE =
+=EF=EB=E0=F2=F4=EE=F0=EC=E5</FONT></B></P></TD>
+    <TD vAlign=3Dtop width=3D"52%"><FONT size=3D2 face=3DArial>
+      <P>=CD=E5 =
+=E8=EC=E5=E5=F2=F1=FF</FONT></P></TD></TR></TBODY></TABLE></CENTER>
+<P> </P>
+<DIV align=3Dcenter>
+<CENTER>
+<TABLE border=3D2 width=3D"25%" bgColor=3D#d3d6a7>
+  <TBODY>
+  <TR>
+    <TD width=3D"100%" align=3Dmiddle><FONT color=3D#0000ff size=3D2=20
+      face=3DArial><U><B><A=20
+      =
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/index_msdn.htm">=CD=E0=E7=
+=E0=E4 =E2=20
+      =EE=E3=EB=E0=E2=EB=E5=ED=E8=E5</A></B></U></FONT></TD></TR>
+  <TR>
+    <TD width=3D"100%" align=3Dmiddle><FONT color=3D#0000ff size=3D2 =
+face=3DArial><B><A=20
+      =
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/globsdk.htm">=CD=E0 =
+=E3=EB=E0=E2=ED=F3=FE=20
+      =F1=F2=F0=E0=ED=E8=F6=F3</A></B></FONT></TD></TR>
+  <TR>
+    <TD width=3D"100%" align=3Dmiddle><FONT color=3D#0000ff size=3D2 =
+face=3DArial><B><A=20
+      =
+href=3D"http://vsokovikov.narod.ru/New_MSDN_API/ref_api.htm">=CD=E0 =
+=EE=E3=EB=E0=E2=EB=E5=ED=E8=E5=20
+      =
+=F1=EF=F0=E0=E2=EA=E8</A></B></FONT></TD></TR></TBODY></TABLE></CENTER></=
+DIV><FONT=20
+color=3D#0000c0 size=3D1>
+<DIV class=3DitfBorder><!--webbot bot=3D"Timestamp" S-Type=3D"EDITED"
+  S-Format=3D"=CF=E5=F0=E5=E2=EE=E4 02.12.2004 20:49 =A9Copyright V. =
+Sokovikov" startspan -->=CF=E5=F0=E5=E2=EE=E4=20
+02.12.2004 20:49 =A9Copyright V. Sokovikov<!--webbot bot=3D"Timestamp" =
+i-checksum=3D"32840" endspan --> </DIV><!--vs--></FONT></BODY></HTML>
+
+------=_NextPart_000_0005_01CC923D.89436EE0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://vsokovikov.narod.ru/New_MSDN_API/image/45.gif
+
+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
+Ow==
+
+------=_NextPart_000_0005_01CC923D.89436EE0--

@@ -1,0 +1,1296 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="Создание%20процесса%20в%20UNIX.files/filelist.xml">
+<link rel=Edit-Time-Data
+href="Создание%20процесса%20в%20UNIX.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>developerWorks Россия  &gt;  AIX and UNIX  &gt; </title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Liniov</o:Author>
+  <o:LastAuthor>Liniov</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>2</o:TotalTime>
+  <o:Created>2007-03-16T13:37:00Z</o:Created>
+  <o:LastSaved>2007-03-16T13:37:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>3063</o:Words>
+  <o:Characters>17460</o:Characters>
+  <o:Company>NNSU</o:Company>
+  <o:Lines>145</o:Lines>
+  <o:Paragraphs>40</o:Paragraphs>
+  <o:CharactersWithSpaces>20483</o:CharactersWithSpaces>
+  <o:Version>11.5606</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:204;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536871559 0 0 0 415 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:204;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:19.0pt;
+	font-family:Arial;
+	font-weight:normal;}
+a:link, span.MsoHyperlink
+	{color:#5C81A7;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+code
+	{font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+pre
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";}
+span.bct1
+	{mso-style-name:bct1;
+	mso-ansi-font-size:7.5pt;
+	mso-bidi-font-size:7.5pt;
+	font-family:Verdana;
+	mso-ascii-font-family:Verdana;
+	mso-hansi-font-family:Verdana;
+	color:#CCCCCC;}
+span.atitle1
+	{mso-style-name:atitle1;
+	mso-ansi-font-size:13.5pt;
+	mso-bidi-font-size:13.5pt;
+	font-family:Arial;
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-weight:bold;}
+span.smalltitle1
+	{mso-style-name:smalltitle1;
+	mso-ansi-font-size:11.5pt;
+	mso-bidi-font-size:11.5pt;
+	font-family:Arial;
+	mso-ascii-font-family:Arial;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:Arial;
+	font-weight:bold;
+	font-style:normal;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:1.0cm 1.0cm 1.0cm 1.0cm;
+	mso-header-margin:35.45pt;
+	mso-footer-margin:35.45pt;
+	mso-gutter-margin:1.0cm;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:1448045263;
+	mso-list-template-ids:-1699831054;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Обычная таблица";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=RU link="#5C81A7" vlink=purple style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><a
+href="http://www.ibm.com/developerworks/ru/"><span lang=EN-US style='font-size:
+7.5pt;color:#999999;mso-ansi-language:EN-US;text-decoration:none;text-underline:
+none'>developerWorks </span><span style='font-size:7.5pt;color:#999999;
+text-decoration:none;text-underline:none'>Россия</span></a></span><span
+class=bct1><span lang=EN-US style='font-size:7.5pt;mso-ansi-language:EN-US'>&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span></span><span
+style='font-size:8.5pt;font-family:Verdana;color:black'><a
+href="http://www.ibm.com/developerworks/ru/aix/"><span lang=EN-US
+style='font-size:7.5pt;color:#999999;mso-ansi-language:EN-US;text-decoration:
+none;text-underline:none'>AIX and UNIX</span></a></span><span class=bct1><span
+lang=EN-US style='font-size:7.5pt;mso-ansi-language:EN-US'>&nbsp;&nbsp;&gt;</span></span><span
+style='font-size:8.5pt;font-family:Verdana;color:black'><img border=0 width=1
+height=1 id="_x0000_i1025"
+src="Изучение%20создания%20процесса%20UNIX_files/c.gif"></span><span
+lang=EN-US style='font-size:8.5pt;font-family:Verdana;color:black;mso-ansi-language:
+EN-US'><o:p></o:p></span></p>
+
+<h1><span style='color:black'>Изучение создания процесса UNIX<o:p></o:p></span></h1>
+
+<p class=MsoNormal><b><span style='font-size:8.5pt;font-family:Verdana;
+color:#666666'>Анализ жизненного цикла процесса, запускаемого операционной
+системой UNIX<o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Уровень
+сложности: средний<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#author">Шон
+Волберг</a>, старший сетевой инженер, P.Eng<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>01.03.2007<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Системные
+администраторы должны знать, как в среде UNIX(R) создаются и уничтожаются
+процессы, с тем, чтобы понимать, как системы согласовываются между собой, а
+также как управлять процессами которые неправильно функционируют.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><script language="JavaScript"  type="text/javascript">
+<!--
+if (document.referrer&&document.referrer!="") { 
+   // document.write(document.referrer);
+   var q = document.referrer;
+   var engine = q;
+   var isG = engine.search(/google\.com/i);
+   var searchTerms;
+   //var searchTermsForDisplay;
+   if (isG != -1) { 
+	   var i = q.search(/q=/);
+	   var q2 = q.substring(i+2);
+	   var j = q2.search(/&/);
+	   j = (j == -1)?q2.length:j;
+	   searchTerms = q.substring(i+2,i+2+j);
+	   if (searchTerms.length != 0) {
+	       searchQuery(searchTerms);
+	       document.write("<div id=\"contents\"></div>");
+	   }
+   } 
+}
+//-->
+</script>Одна из многочисленных обязанностей системного администратора – это
+обеспечивать правильный запуск программ пользователей. Эта задача усложняется
+наличием в системе других одновременно выполняющихся программ. По разным
+причинам эти программы могут не работать, зависать или быть неисправными.
+Понимание процесса создания, управления и уничтожения этих заданий в
+операционной системе UNIX® является важнейшим шагом к созданию более надежной
+системы. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Разработчики
+изучают, как ядро управляет процессами, еще и потому, что приложения, которые
+нормально работают с другими составляющими системы, требуют меньше ресурсов и
+не так часто вызывают проблемы у системных администраторов. Приложение, которое
+постоянно нужно перезапускать, потому что оно создает процессы-зомби
+(описываются дальше), естественно не желательно. Понимание системы UNIX
+означает, что управляемые процессы позволяют разработчикам создавать программы,
+которые спокойно выполняются в фоновом режиме. Необходимость в сеансе работы с
+терминалом, который должен отображаться на чьем-то экране, отпадает.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Основным
+компоновочным блоком управления этих программ является процесс. Процесс – это
+имя, присвоенное программе, выполняемой операционной системой. Если вы знаете
+команду </span><code><span style='font-size:10.0pt;color:black'>ps</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, вам должен быть знаком
+список процессов, такой как в <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing1">листинге
+1</a>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing1><b>Листинг1. Вывод команды ps </b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-tab-count:4'>                                   </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox#ps -ef <o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>     </span>UID<span style='mso-spacerun:yes'>   </span>PID<span style='mso-spacerun:yes'>  </span>PPID<span style='mso-spacerun:yes'>   </span>C<span style='mso-spacerun:yes'>    </span>STIME TTY<span style='mso-spacerun:yes'>         </span>TIME CMD<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>    </span>root<span style='mso-spacerun:yes'>     </span>0<span style='mso-spacerun:yes'>     </span>0<span style='mso-spacerun:yes'>   </span>0 20:15:23 ?<span style='mso-spacerun:yes'>           </span>0:14 sched<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>    </span>root<span style='mso-spacerun:yes'>     </span>1<span style='mso-spacerun:yes'>     </span>0<span style='mso-spacerun:yes'>   </span>0 20:15:24 ?<span style='mso-spacerun:yes'>           </span>0:00 /sbin/init<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>    </span>root<span style='mso-spacerun:yes'>     </span>2<span style='mso-spacerun:yes'>     </span>0<span style='mso-spacerun:yes'>   </span>0 20:15:24 ?<span style='mso-spacerun:yes'>           </span>0:00 pageout<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>    </span>root<span style='mso-spacerun:yes'>     </span>3<span style='mso-spacerun:yes'>     </span>0<span style='mso-spacerun:yes'>   </span>0 20:15:24 ?<span style='mso-spacerun:yes'>           </span>0:00 fsflush<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>  </span>daemon<span style='mso-spacerun:yes'>   </span>240<span style='mso-spacerun:yes'>     </span>1<span style='mso-spacerun:yes'>   </span>0 20:16:37 ?<span style='mso-spacerun:yes'>           </span>0:00 /usr/lib/nfs/statd<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>...<o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Для
+рассмотрения важны первые три колонки. В первой находится список
+пользователей,от имени которых работают процессы, во второй перечисляются ID
+процессов, в третьей - ID родительских процессов. Последняя колонка содержит
+описание процесса, как правило, имя запущенной программы. Каждому процессу
+присвоен идентификатор, который называется идентификатор процесса (PID). Также
+у процесса есть родитель, в большинстве случаев указывается PID процесса,
+который запустил данный процесс.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Существование
+родительского PID (PPID), означает, что один процесс создается другим
+процессом. Исходный процесс, который запускается в системе, называется </span><code><span
+style='font-size:10.0pt;color:black'>init</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>, и ему всегда присваивается PID 1. </span><code><span
+style='font-size:10.0pt;color:black'>init</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'> - это первый действительный процесс,
+запускаумый ядром при загрузке. Основная задача </span><code><span
+style='font-size:10.0pt;color:black'>init</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>запуск всей системы. </span><code><span
+style='font-size:10.0pt;color:black'>init</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'> и другие процессы с PPID 0 являются
+процессами ядра. <o:p></o:p></span></p>
+
+<p class=MsoNormal><a name=N10083><span class=atitle1><span style='font-size:
+13.5pt;color:black'>Использование системного вызова fork</span></span></a><span
+style='mso-bookmark:N10083'></span><span style='font-size:8.5pt;font-family:
+Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Системный
+вызов </span><code><span style='font-size:10.0pt;color:black'>fork(2)</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> создает новый процесс.
+В <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing2">листинге
+2</a> показан </span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> используемый в простом
+примере C-кода. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing2><b>Листинг 2. Простое применение fork(2)</b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-tab-count:4'>                                   </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ cat fork1.c<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>int main (void) {<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>pid_t p; /* fork returns type pid_t */<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>p = fork();<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>printf(&quot;fork returned %d\n&quot;,<span style='mso-spacerun:yes'>  </span>p);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'>sunbox$ gcc fork1.c -o fork1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ ./fork1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>fork returned 0<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>fork returned 698<o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.5pt;font-family:Verdana;
+color:black;mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Код
+в </span><code><span style='font-size:10.0pt;color:black'>fork1.c</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> просто вызывает </span><code><span
+style='font-size:10.0pt;color:black'>fork</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'> и отображает целочисленный результат
+выполения </span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> через вызов </span><code><span
+style='font-size:10.0pt;color:black'>printf</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. Делается только один
+вызов, но вывод отображается дважды. Это происходит потому, что новый процесс
+создается в рамках вызова </span><code><span style='font-size:10.0pt;
+color:black'>fork</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>. После вызова возвращаются два отдельных процесса. Это часто
+называют &quot;вызванный единожды, возвращается дважды.&quot; <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Возвращаемые
+</span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> значения очень
+интересны. Одно из них - 0; другое – ненулевое значение. Процесс, который
+получает 0, называется <i>порожденным процессом</i>, а ненулевое значение
+достается исходному процессу, который является <i>родительским процессом</i>.
+Вы используете возвращаемые значения, для того чтобы определить, где какой
+процесс. Поскольку оба процесса возобновляют выполнение в одной и той же
+области, единственный возможный дифференциатор это возвращаемые значения </span><code><span
+style='font-size:10.0pt;color:black'>fork</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Логическим
+основанием для нулевого и ненулевого возвращаемого значения служит то, что
+порожденный процесс всегда может вычислить своего родителя с помощью запроса </span><code><span
+style='font-size:10.0pt;color:black'>getppid(2)</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, однако родителю
+намного сложнее определить всех своих потомков. Таким образом, родитель узнает
+о своем новом потомке, и потомок при необходимости может отыскать своего
+родителя. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Теперь,
+зная о возвращаемом значении </span><code><span style='font-size:10.0pt;
+color:black'>fork</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>, код может различать порожденный и родительский процессы и вести
+себя соответствующе. В <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing3">листинге
+3</a> показана программа, которая отображает разные выводы, основанные на
+результатах </span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing3><b>Листинг 3. Более полный пример использования fork</b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:4'>                                   </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ cat fork2.c<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>int main (void) {<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>pid_t p;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><span style='mso-spacerun:yes'>        </span>printf(&quot;Original program,<span style='mso-spacerun:yes'>  </span>pid=%d\n&quot;,<span style='mso-spacerun:yes'>  </span>getpid());<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>p = fork();<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>if (p == 0) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>printf(&quot;In child process,<span style='mso-spacerun:yes'>  </span>pid=%d,<span style='mso-spacerun:yes'>  </span>ppid=%d\n&quot;, <o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                        </span>getpid(),<span style='mso-spacerun:yes'>  </span>getppid());<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>} else {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>printf(&quot;In parent,<span style='mso-spacerun:yes'>  </span>pid=%d,<span style='mso-spacerun:yes'>  </span>fork returned=%d\n&quot;, <o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                        </span>getpid(),<span style='mso-spacerun:yes'>  </span>p);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'>sunbox$ gcc fork2.c -o fork2<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ ./fork2<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>Original program,<span style='mso-spacerun:yes'>  </span>pid=767<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>In child process,<span style='mso-spacerun:yes'>  </span>pid=768, <span style='mso-spacerun:yes'> </span>ppid=767<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>In parent,<span style='mso-spacerun:yes'>  </span>pid=767,<span style='mso-spacerun:yes'>  </span>fork returned=768<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.5pt;font-family:Verdana;
+color:black;mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>В
+<a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing3">листинге
+3</a> распечатываются PID распечатываются на каждом шаге, и код проверяет
+возвращаемые </span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> значения, для того
+чтобы определить, какой процесс родительский, а какой порожденный (дочерний).
+Сравнивая распечатанные PID, вы можете увидеть, что исходный процесс – это
+родительский процесс (PID 767), и порождаемый процесс (PID 768) знает, кто его
+родитель. Обратите внимание на то, как потомок находит своего родителя при
+помощи </span><code><span style='font-size:10.0pt;color:black'>getppid</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, и как родитель
+использует результат </span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> для поиска своих
+потомков. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Теперь,
+когда вы разобрались с методом дублирования процессов, давайте рассмотрим, как
+выполнять разные процессы. </span><code><span style='font-size:10.0pt;
+color:black'>fork</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'> - это только половина уравнения. Семейство системных вызовов </span><code><span
+style='font-size:10.0pt;color:black'>exec</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'> запускает определенную программу. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><a name=N10109><span class=atitle1><span style='font-size:
+13.5pt;color:black'>Использование семейства системных вызовов exec</span></span></a><span
+style='mso-bookmark:N10109'></span><span style='font-size:8.5pt;font-family:
+Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Задачей
+</span><code><span style='font-size:10.0pt;color:black'>exec</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> является замена
+текущего процесса на новый процесс. Отметьте использование слова <i>заменить</i>.
+Как только вы вызываете </span><code><span style='font-size:10.0pt;color:black'>exec</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, текущий процесс
+завершается и начинается новый. Если вы хотите создать отдельный процесс,
+сначала вы должны вызвать </span><code><span style='font-size:10.0pt;
+color:black'>fork</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>, затем вызвать </span><code><span style='font-size:10.0pt;
+color:black'>exec</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'> для новой программы в дочернем процессе. В <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing4">листинге
+4</a> показан этот сценарий. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing4><b>Листинг 4. Запуск разных программ посредством соединения
+fork с exec </b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:4'>                                   </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ cat exec1.c<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>int main (void) {<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span></span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>/* Определить массив с завершающим нулем команды для запуска<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:2'>                 </span> следующим за любым параметром,<span style='mso-spacerun:yes'>  </span>в этом случае никаким */<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span></span><span
+  lang=DE style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:DE'>char *arg[] = { &quot;/usr/bin/ls&quot;,<span style='mso-spacerun:yes'>  </span>0 };<o:p></o:p></span></pre><pre><span
+  lang=DE style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:DE'><o:p>&nbsp;</o:p></span></pre><pre><span lang=DE
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  DE'><span style='mso-spacerun:yes'>        </span></span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>/* fork и exec в порожденном процессе */<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span></span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>if (fork() == 0) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>printf(&quot;In child process:\n&quot;);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>execv(arg[0],<span style='mso-spacerun:yes'>  </span>arg);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>printf(&quot;I will never be called\n&quot;);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>printf(&quot;Execution continues in parent process\n&quot;);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>sunbox$ gcc exec1.c -o exec1<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>sunbox$ ./exec1<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>В порожденном процессе:<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>fork1.c<span style='mso-spacerun:yes'>      </span>exec1<span style='mso-spacerun:yes'>        </span>fork2<span style='mso-spacerun:yes'>       </span>exec1.c<span style='mso-spacerun:yes'>      </span>fork1<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>fork2.c<span style='mso-spacerun:yes'>      </span><o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>Выполнение продолжается в родительском процессе<o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Код
+в <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing4">листинге
+4</a> прежде всего, определяет массив, первый элемент которого является путем к
+исполняемой программе, а остальные элементы представляют собой параметры
+командной строки. Массив заканчивается нулевым символом. После возврата от
+системного вызова </span><code><span style='font-size:10.0pt;color:black'>fork</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> дочерний процесс
+должен запустить новую программу с помощью </span><code><span style='font-size:
+10.0pt;color:black'>execv</span></code><span style='font-size:8.5pt;font-family:
+Verdana;color:black'>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>При
+вызове </span><code><span style='font-size:10.0pt;color:black'>execv</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> в первую очередь
+получает указатель на строку с именем программы для запуска, а затем указатель
+на массив параметров, который вы задали ранее. Первый элемент массива
+фактически является именем программы, следовательно, параметры начинают
+перечисляться со второго элемента. Запомните, что порожденный процесс никогда
+не возвращается после вызова </span><code><span style='font-size:10.0pt;
+color:black'>execv</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>. Это означает, что выполняемый процесс заменяется на новый.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Есть
+и другие системные вызовы </span><code><span style='font-size:10.0pt;
+color:black'>exec</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>. Они отличаются способом приема параметров и вопросом
+относительно необходимости передачи переменных окружения. </span><code><span
+style='font-size:10.0pt;color:black'>execv(2)</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> - это один из самых
+простых способов замены текущего образа процесса, поскольку он использует
+массив с завершающим null-символом и не требует информации об окружении. Другие
+варианты: </span><code><span style='font-size:10.0pt;color:black'>execl(2)</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, который принимает
+параметры в отдельные аргументы или </span><code><span style='font-size:10.0pt;
+color:black'>execvp(2)</span></code><span style='font-size:8.5pt;font-family:
+Verdana;color:black'>, который также принимает массив переменных окружения с
+завершающим null-символом. Причем, не каждая операционная система поддерживает
+все варианты. Выбор зависит от платформы, способа программирования и от того,
+нужно ли вам определять какие-либо переменные окружения.</span><span
+lang=EN-US style='font-size:8.5pt;font-family:Verdana;color:black;mso-ansi-language:
+EN-US'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.5pt;font-family:Verdana;
+color:black;mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.5pt;font-family:Verdana;
+color:black;mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 align=right
+ style='mso-cellspacing:0cm;mso-table-lspace:2.25pt;mso-table-rspace:2.25pt;
+ mso-table-anchor-vertical:paragraph;mso-table-anchor-horizontal:column;
+ mso-table-left:right;mso-table-top:middle;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='padding:0cm 0cm 0cm 0cm'>
+  <div align=right>
+  <table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0
+   style='mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+   <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+    <td style='padding:0cm 0cm 0cm 0cm'>
+    <p class=MsoNormal style='mso-element:frame;mso-element-frame-hspace:2.25pt;
+    mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:
+    column;mso-element-left:right;mso-element-top:middle;mso-height-rule:exactly'><span
+    style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+    </td>
+    <td valign=top style='padding:0cm 0cm 0cm 0cm'>
+    <p class=MsoNormal align=right style='text-align:right;mso-element:frame;
+    mso-element-frame-hspace:2.25pt;mso-element-wrap:around;mso-element-anchor-vertical:
+    paragraph;mso-element-anchor-horizontal:column;mso-element-left:right;
+    mso-element-top:middle;mso-height-rule:exactly'><span style='font-size:
+    8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+    </td>
+   </tr>
+  </table>
+  </div>
+  <p class=MsoNormal align=right style='text-align:right;mso-element:frame;
+  mso-element-frame-hspace:2.25pt;mso-element-wrap:around;mso-element-anchor-vertical:
+  paragraph;mso-element-anchor-horizontal:column;mso-element-left:right;
+  mso-element-top:middle;mso-height-rule:exactly'><span style='font-size:8.5pt;
+  font-family:Verdana;color:black'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><a name=N10169><span class=atitle1><span style='font-size:
+13.5pt;color:black'>Что происходит с открытыми файлами, когда вызывается fork? </span></span></a><span
+style='mso-bookmark:N10169'></span><span style='font-size:8.5pt;font-family:
+Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Когда
+процесс дублируется, ядро создает копии всех дескрипторов открытых файлов.
+Дескриптор файла - это целое число, которое является ссылкой на открытый файл
+или устройство, и используется для чтения и записи. Если открытие файла
+находится в программе перед </span><code><span style='font-size:10.0pt;
+color:black'>fork</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>, то что произойдет, если оба процесса попытаются читать или
+записывать? Перезапишет один из процессов данные другого? Будут прочитаны две
+копии файла? Эти вопросы изучаются в <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing5">листинге
+5</a>, посредством открытия двух файлов - одного для чтения, другого для
+записи, а также при помощи одновременного чтения и записи родителем и потомком.
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing5><b>Листинг 5. Два процесса одновременно записывают и читают
+один и тот же файл.</b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:4'>                                   </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;strings.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;sys/types.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;sys/stat.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;fcntl.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>int main(void) {<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>int fd_in,<span style='mso-spacerun:yes'>  </span>fd_out;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>   </span><span style='mso-spacerun:yes'>     </span>char buf[1024];<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><span style='mso-spacerun:yes'>        </span>memset(buf,<span style='mso-spacerun:yes'>  </span>0,<span style='mso-spacerun:yes'>  </span>1024); /* </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>пустой</span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'> </span><span style='font-size:8.5pt;font-family:"Lucida Console";
+  color:black'>буфер</span><span lang=EN-US style='font-size:8.5pt;font-family:
+  "Lucida Console";color:black;mso-ansi-language:EN-US'>*/<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>fd_in = open(&quot;/tmp/infile&quot;,<span style='mso-spacerun:yes'>  </span>O_RDONLY);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>fd_out = open(&quot;/tmp/outfile&quot;,<span style='mso-spacerun:yes'>  </span>O_WRONLY|O_CREAT);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><span style='mso-spacerun:yes'>        </span></span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>fork(); /* Потомок против родителя значения не имеет */<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><o:p>&nbsp;</o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span></span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>while (read(fd_in,<span style='mso-spacerun:yes'>  </span>buf,<span style='mso-spacerun:yes'>  </span>2) &gt; 0) { /* </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>Цикл</span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'> </span><span style='font-size:8.5pt;font-family:"Lucida Console";
+  color:black'>через</span><span lang=EN-US style='font-size:8.5pt;font-family:
+  "Lucida Console";color:black;mso-ansi-language:EN-US'> infile */<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>printf(&quot;%d: %s&quot;,<span style='mso-spacerun:yes'>  </span>getpid(),<span style='mso-spacerun:yes'>  </span>buf);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>/* </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>Написать</span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'> </span><span style='font-size:8.5pt;font-family:"Lucida Console";
+  color:black'>строку</span><span lang=EN-US style='font-size:8.5pt;font-family:
+  "Lucida Console";color:black;mso-ansi-language:EN-US'> */<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>sprintf(buf,<span style='mso-spacerun:yes'>  </span>&quot;%d Hello,<span style='mso-spacerun:yes'>  </span>world!\n\r&quot;,<span style='mso-spacerun:yes'>  </span>getpid());<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>write(fd_out,<span style='mso-spacerun:yes'>  </span>buf,<span style='mso-spacerun:yes'>  </span>strlen(buf));<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>sleep(1);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>memset(buf,<span style='mso-spacerun:yes'>  </span>0,<span style='mso-spacerun:yes'>  </span>1024); /* </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>пустой</span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'> </span><span style='font-size:8.5pt;font-family:"Lucida Console";
+  color:black'>буфер</span><span lang=EN-US style='font-size:8.5pt;font-family:
+  "Lucida Console";color:black;mso-ansi-language:EN-US'>*/<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>sleep(10);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'>sunbox$ gcc fdtest1.c -o fdtest1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ ./fdtest1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2875: 1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874: 2<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2875: 3<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874: 4<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2875: 5<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874: 6<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874: 7<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ cat /tmp/outfile<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2875 Hello, world!<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874 Hello, world!<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2875 Hello, world!<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874 Hello, world!<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2875 Hello, world!<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>2874 Hello, world!<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>2874 Hello, world!<o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing5">Листинг
+5</a> - это простая программа, открывающая файл и вызывающая </span><code><span
+style='font-size:10.0pt;color:black'>fork</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>. Каждый процесс использует для чтения
+один и тот же дескриптор файла (это просто текстовый файл с числами от 1 до 7),
+печатая то, что было прочитано вместе с PID. После прочтения строки PID
+записывается в выходной файл (out file). Цикл завершается, когда в файле больше
+не остается непрочитанных символов. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Результаты
+работы кода <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing5">листинга
+5</a> показывают, что, таким образом, когда один процесс читает из файла,
+указатель файла смещается для обоих процессов. Также, когда файл записывается,
+каждый следующий символ добавляется в конец файла. Это имеет смысл, поскольку
+ядро отслеживает информацию об открытом файле. Дескриптор файла это просто
+идентификатор для процесса.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Вы
+должно быть также знаете о том, что стандартный вывод (экран) тоже имеет
+дескриптор файла. Это видно во время вызова </span><code><span
+style='font-size:10.0pt;color:black'>fork</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>: оба процесса могут выводить информацию
+на экран.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><a name=N1019E><span class=atitle1><span style='font-size:
+13.5pt;color:black'>Смерть родителя или потомка</span></span></a><span
+style='mso-bookmark:N1019E'></span><span style='font-size:8.5pt;font-family:
+Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>В
+какой-то момент процессы должны завершаться. Вопрос только в том, какой
+завершится первым: родитель или потомок.<o:p></o:p></span></p>
+
+<p class=MsoNormal><a name=N101A8><span class=smalltitle1><span
+style='font-size:11.5pt;color:black'>Родительский процесс завершается раньше
+потомка</span></span></a><span style='mso-bookmark:N101A8'></span><span
+style='font-size:8.5pt;font-family:Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Если
+родительский процесс умирает раньше своих потомков, осиротевшие потомки должны
+знать, кто их родитель. Вспомните о том, что у каждого процесса есть родитель,
+и вы можете полностью отследить дерево процессов, начиная с PID 1, имеющего
+также название </span><code><span style='font-size:10.0pt;color:black'>init</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. Когда родитель
+умирает, </span><code><span style='font-size:10.0pt;color:black'>init</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> усыновляет всех его
+потомков, как показано в <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing6">листинге
+6</a>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing6><b>Листинг 6. Родительский процесс умирает раньше потомка</b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:4'>                                   </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>int main(void) {<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>int i;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>if (fork()) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>/* </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>Родитель</span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'> */<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><span style='mso-spacerun:yes'>                </span>sleep(2);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>_exit(0);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>for (i=0; i &lt; 5; i++) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>printf(&quot;My parent is<span style='mso-spacerun:yes'>   </span>%d\n&quot;,<span style='mso-spacerun:yes'>  </span>getppid());<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>sleep(1);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>sunbox$ gcc die1.c -o die1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ ./die1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>My parent is<span style='mso-spacerun:yes'>   </span>2920<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>My parent is<span style='mso-spacerun:yes'>   </span>2920<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ My parent is 1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>My parent is<span style='mso-spacerun:yes'>  </span>1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>My parent is<span style='mso-spacerun:yes'>  </span>1<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>  </span><o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.5pt;font-family:Verdana;
+color:black;mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>В
+этом примере родительский процесс вызывает </span><code><span style='font-size:
+10.0pt;color:black'>fork</span></code><span style='font-size:8.5pt;font-family:
+Verdana;color:black'>, ждет две секунды и завершается. Порожденный процесс
+продолжается, распечатывая PID своего родителя в течение пяти секунд. Вы можете
+видеть, что когда родитель умирает, PPID изменяется на 1. Также интересно
+возвращение управления командному процессору. Поскольку порожденный процесс
+выполняется в фоне, как только родитель умирает, управление возвращается к
+командному процессору. <o:p></o:p></span></p>
+
+<p class=MsoNormal><a name=N101CF><span class=smalltitle1><span
+style='font-size:11.5pt;color:black'>Потомок умирает раньше родителя</span></span></a><span
+style='mso-bookmark:N101CF'></span><span style='font-size:8.5pt;font-family:
+Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing7">Листинг
+7</a> описывает процесс противоположный <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing6">листингу
+6</a>: смерть потомка раньше родителя. Для того чтобы лучше показать, что
+происходит, непосредственно из процесса ничего не распечатывается. Вместо
+этого, интересная информация находится в списке процессов. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing7><b>Листинг 7. Порожденный процесс умирает раньше родительского</b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:4'>                                   </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>  </span></span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ cat die2.c<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>int main(void) {<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span></span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>int i;<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span>if (!fork()) {<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>                </span>/* Потомок немедленно завершается*/<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>                </span>_exit(0);<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span
+  style='mso-tab-count:1'>         </span>/* Родитель ждет около минуты*/<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span>sleep(60);<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>}<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><o:p>&nbsp;</o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>sunbox$ gcc die2.c -o die2<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>sunbox$ ./die2 &amp;<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>[1] 2934<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>sunbox$ ps -ef | grep 2934<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>    </span>sean<span style='mso-spacerun:yes'>  </span>2934<span style='mso-spacerun:yes'>  </span>2885<span style='mso-spacerun:yes'>   </span>0 21:43:05 pts/1<span style='mso-spacerun:yes'>       </span>0:00 ./die2<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>    </span>sean<span style='mso-spacerun:yes'>  </span>2935<span style='mso-spacerun:yes'>  </span>2934<span style='mso-spacerun:yes'>   </span>0<span style='mso-spacerun:yes'>        </span>- ?<span style='mso-spacerun:yes'>           </span>0:00 &lt;defunct&gt;<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>sunbox$ ps -ef | grep 2934<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>[1]+<span style='mso-spacerun:yes'>  </span>Exit 199<span style='mso-spacerun:yes'>                </span>./die2<o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><code><span style='font-size:10.0pt;color:black'>die2</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> выполняется в фоновом
+режиме, используя оператор </span><code><span style='font-size:10.0pt;
+color:black'>&amp;</span></code><span style='font-size:8.5pt;font-family:Verdana;
+color:black'>, после этого на экран выводится список процессов, отображая
+только выполняемый процесс и его потомков. PID 2934 – родительский процесс, PID
+2935 – процесс, который создается и немедленно завершается. Несмотря на
+преждевременный выход, порожденный процесс все еще находится в таблице
+процессов, уже как <i>умерший</i> процесс, который еще называется <i>зомби</i>.
+Когда через 60 секунд родитель умирает, оба процесса завершаются. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Когда
+порожденный процесс умирает, его родитель информируется при помощи сигнала,
+который называется </span><code><span style='font-size:10.0pt;color:black'>SIGCHLD</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. Точный механизм всего
+этого сейчас не имеет значения. Что действительно важно, так это то, что
+родитель должен как-то узнать о смерти потомка. С момента смерти потомка и до
+того момента как родитель получает сигнал, потомок находится в состоянии зомби.
+Зомби не выполняется и не потребляет ресурсов CPU; он только занимает
+пространство в таблице процессов. Когда родитель умирает, ядро наконец-то может
+убрать потомков вместе с родителем. Значит, единственный способ избавиться от
+зомби - это убить родителя. Лучший способ справиться с зомби – гарантировать,
+что они не окажутся на первом месте. Код в <a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing8">листинге
+8</a> описывает обработчик сигналов, для работы с входящим сигналом </span><code><span
+style='font-size:10.0pt;color:black'>SIGCHLD</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><br>
+<a name=listing8><b>Листинг 8. Обработчик сигналов в действии</b></a><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width=572
+ style='width:429.0pt;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes'>
+  <td style='border:solid #CCCCCC 1.0pt;mso-border-alt:solid #CCCCCC .75pt;
+  background:#EEEEEE;padding:3.75pt 3.75pt 3.75pt 3.75pt'><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-tab-count:4'>                                   </span><span style='mso-spacerun:yes'> </span><o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;unistd.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;stdio.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;sys/types.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>#include &lt;sys/wait.h&gt;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>void sighandler(int sig) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>printf(&quot;In signal handler for signal<span style='mso-spacerun:yes'>  </span>%d\n&quot;,<span style='mso-spacerun:yes'>  </span>sig);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>/* wait() </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>это</span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'> </span><span style='font-size:8.5pt;font-family:"Lucida Console";
+  color:black'>основное</span><span style='font-size:8.5pt;font-family:"Lucida Console";
+  color:black;mso-ansi-language:EN-US'> </span><span style='font-size:8.5pt;
+  font-family:"Lucida Console";color:black'>для</span><span style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'> </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>подтверждения</span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'> SIGCHLD */<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>wait(0);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US style='font-size:
+  8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:EN-US'>int main(void) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><span style='mso-spacerun:yes'>        </span>int i;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span></span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>/* Установить обработчик сигнала к SIGCHLD<span style='mso-spacerun:yes'>  </span>*/<o:p></o:p></span></pre><pre><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'><span style='mso-spacerun:yes'>        </span></span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sigset(SIGCHLD,<span style='mso-spacerun:yes'>  </span>&amp;sighandler);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>    </span><span style='mso-spacerun:yes'>    </span>if (!fork()) {<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>                </span>/* </span><span
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black'>Потомок</span><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'> */<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'><span style='mso-spacerun:yes'>                </span>_exit(0);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>}<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>        </span>sleep(60);<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>}<o:p></o:p></span></pre><pre><span lang=EN-US
+  style='font-size:8.5pt;font-family:"Lucida Console";color:black;mso-ansi-language:
+  EN-US'>sunbox$ gcc die3.c -o die3<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ ./die3 &amp;<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>[1] 3116<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>sunbox$ In signal handler for signal<span style='mso-spacerun:yes'>  </span>18 <o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'>ps -ef | grep 3116<o:p></o:p></span></pre><pre><span
+  lang=EN-US style='font-size:8.5pt;font-family:"Lucida Console";color:black;
+  mso-ansi-language:EN-US'><span style='mso-spacerun:yes'>    </span>sean<span style='mso-spacerun:yes'>  </span>3116<span style='mso-spacerun:yes'>  </span>2885<span style='mso-spacerun:yes'>   </span>0 22:37:26 pts/1<span style='mso-spacerun:yes'>       </span>0:00 ./die3<o:p></o:p></span></pre></td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:8.5pt;font-family:Verdana;
+color:black;mso-ansi-language:EN-US'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><a
+href="http://www.ibm.com/developerworks/ru/library/au-unixprocess/index.html?S_TACT=105AGX99&amp;S_CMP=GR01#listing8">Листинг
+8</a> немного сложнее, чем предыдущий пример, поскольку там есть функция </span><code><span
+style='font-size:10.0pt;color:black'>sigset</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, которая устанавливает
+указатель функции на обработчик сигнала. Всякий раз, когда процесс получает
+обработанный сигнал, вызывается функция, заданная через </span><code><span
+style='font-size:10.0pt;color:black'>sigset</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. Для сигнала </span><code><span
+style='font-size:10.0pt;color:black'>SIGCHLD</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, приложение должно
+вызвать функцию </span><code><span style='font-size:10.0pt;color:black'>wait(3c)</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'> для того, чтобы
+подождать завершения порожденного процесса. Поскольку процесс уже завершен, это
+необходимо для того, чтобы ядро получило подтверждение о смерти потомков. На
+самом деле, родителю следовало бы сделать больше, чем просто подтвердить
+сигнал. Ему следовало бы также очистить данные потомка.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>После
+выполнения </span><code><span style='font-size:10.0pt;color:black'>die3</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, проверяется список
+процессов. Обработчик сигнала получает значение 18 (</span><code><span
+style='font-size:10.0pt;color:black'>SIGCHLD</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>), подтверждение о
+завершении потомка сделано, и родитель возвращается в </span><code><span
+style='font-size:10.0pt;color:black'>состояние ожидания sleep(60)</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><a name=N1023B><span class=atitle1><span style='font-size:
+13.5pt;color:black'>Краткие выводы</span></span></a><span style='mso-bookmark:
+N1023B'></span><span style='font-size:8.5pt;font-family:Verdana;color:black'><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Процессы
+UNIX создаются, когда один процесс вызывает </span><code><span
+style='font-size:10.0pt;color:black'>fork</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>, который разделяет выполняемый процесс
+на два. После этого процесс может выполнить один из системных вызовов в
+семействе </span><code><span style='font-size:10.0pt;color:black'>exec</span></code><span
+style='font-size:8.5pt;font-family:Verdana;color:black'>, который заменяет
+текущий образ на новый.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Когда
+родительский процесс умирает, всех его потомков усыновляет </span><code><span
+style='font-size:10.0pt;color:black'>init</span></code><span style='font-size:
+8.5pt;font-family:Verdana;color:black'>, имеющий PID 1. Если потомок умирает
+раньше родителя, родительскому процессу передается сигнал, а потомок переходит
+в состояние зомби до тех пор, пока сигнал не подтвердится или родительский
+процесс не будет убит. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;color:black'>Теперь,
+когда вы знаете, как создаются и уничтожаются процессы, вам будет проще
+разобраться в процессах, работающих в вашей системе. Особенно это касается
+процессов со сложной структурой, которые усложняются множественным возовом
+других процессов, таких как Apache. Возможность прослеживать дерево процессов
+для какого-то отдельного процесса, позволяет отследить любое приложение до
+процесса<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span style='font-size:8.5pt;
+font-family:Verdana;color:black'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal><a name=author><span class=atitle1><span style='font-size:
+13.5pt;color:black'>Об авторе</span></span></a><span style='mso-bookmark:author'></span><span
+style='font-size:8.5pt;font-family:Verdana;color:black'><o:p></o:p></span></p>
+
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;mso-cellspacing:0cm;mso-padding-alt:0cm 0cm 0cm 0cm'>
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes'>
+  <td colspan=3 style='padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;
+  color:black'><img border=0 width=66 height=5 id="_x0000_i1027"
+  src="Изучение%20создания%20процесса%20UNIX_files/c.gif"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td valign=top style='padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+   coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+   filled="f" stroked="f">
+   <v:stroke joinstyle="miter"/>
+   <v:formulas>
+    <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+    <v:f eqn="sum @0 1 0"/>
+    <v:f eqn="sum 0 0 @1"/>
+    <v:f eqn="prod @2 1 2"/>
+    <v:f eqn="prod @3 21600 pixelWidth"/>
+    <v:f eqn="prod @3 21600 pixelHeight"/>
+    <v:f eqn="sum @0 0 1"/>
+    <v:f eqn="prod @6 1 2"/>
+    <v:f eqn="prod @7 21600 pixelWidth"/>
+    <v:f eqn="sum @8 21600 0"/>
+    <v:f eqn="prod @7 21600 pixelHeight"/>
+    <v:f eqn="sum @10 21600 0"/>
+   </v:formulas>
+   <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+   <o:lock v:ext="edit" aspectratio="t"/>
+  </v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t75" alt="Фото Шона Волберга"
+   style='position:absolute;margin-left:0;margin-top:0;width:48pt;height:60pt;
+   z-index:1;mso-wrap-distance-left:0;mso-wrap-distance-right:0;
+   mso-position-horizontal:left;mso-position-horizontal-relative:text;
+   mso-position-vertical-relative:line' o:allowoverlap="f">
+   <v:imagedata src="Изучение%20создания%20процесса%20UNIX_files/p-swalberg.jpg"/>
+   <w:wrap type="square"/>
+  </v:shape><![endif]--><![if !vml]><img width=64 height=80
+  src="Изучение%20создания%20процесса%20UNIX_files/p-swalberg.jpg" align=left
+  alt="Фото Шона Волберга" v:shapes="_x0000_s1026"><![endif]><span
+  style='font-size:8.5pt;font-family:Verdana;color:black'><o:p></o:p></span></p>
+  </td>
+  <td valign=top style='padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;
+  color:black'><img border=0 width=4 height=5 id="_x0000_i1028"
+  src="Изучение%20создания%20процесса%20UNIX_files/c.gif"><o:p></o:p></span></p>
+  </td>
+  <td width="100%" valign=top style='width:100.0%;padding:0cm 0cm 0cm 0cm'>
+  <p class=MsoNormal><span style='font-size:8.5pt;font-family:Verdana;
+  color:black'>В академической, корпоративной средах, среде поставщиков
+  интернет-услуг Шон Волберг (Sean Walberg) работает с системами Linux и UNIX с
+  1994 года. За последнюю пару лет он очень много написал о системном
+  администрировании. Вы можете написать ему на <a
+  href="mailto:sean@ertw.com?cc=">mailto:sean@ertw.com?cc=</a>.<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
+</html>
