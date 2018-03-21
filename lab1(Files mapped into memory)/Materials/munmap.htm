@@ -1,0 +1,45 @@
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251"><title>munmap</title></head><body topmargin="30" leftmargin="30" bgcolor="#ffffff" link="#0000ff" vlink="#800080">
+
+<h1 align="center"><font face="Times New Roman">Системный вызов munmap</font></h1>
+<b><font face="Times New Roman" size="5"><p>Прототип системного вызова</p></font>
+</b>
+<dir><font color="#008000"> 
+  <blockquote><b>#include &lt;sys/types.h&gt;<br>
+  #include &lt;unistd.h&gt;<br>
+    #include &lt;sys/mman.h&gt; </b></blockquote>
+  <blockquote><b>int munmap (void *start, size_t length);</b></blockquote>
+  </font></dir>
+
+<b><font face="Times New Roman" size="5"><p>Описание системного вызова</p></font></b>
+<dir><font face="Times New Roman" size="5"><b> </b></font> 
+  <blockquote> 
+    <p align="justify"><font face="Times New Roman">Системный вызов</font> <b><font color="#008000">munmap</font></b><font face="Times New Roman"> 
+      служит для прекращения отображения memory mapped файла в адресное пространство 
+      вычислительной системы. Если при системном вызове<a href="http://cs.mipt.ru/docs/courses/osstud/man/mmap.htm"> mmap()</a> 
+      было задано значение параметра <b><font color="#008000">flags</font></b> 
+      равное <b><font color="#008000">MAP_SHARED</font></b> и в отображении файла 
+      была разрешена операция записи (в параметре <b><font color="#008000">prot</font></b> 
+      использовалось значение<b><font color="#008000"> PROT_WRITE</font></b>), 
+      то <b><font color="#008000">munmap</font></b> синхронизирует содержимое 
+      отображения с содержимым файла во вторичной памяти. После его выполнения 
+      области памяти, использованные для отображения файла, становятся недоступны 
+      текущему процессу.</font>
+  </p></blockquote>
+  <blockquote> 
+    <p align="justify"><font face="Times New Roman">Параметр <b><font color="#008000">addr 
+      </font></b> является адресом начала области памяти, выделенной для отображения 
+      файла, т.е. значением, которое вернул системный вызов <a href="http://cs.mipt.ru/docs/courses/osstud/man/mmap.htm">mmap()</a>.<br>
+      <br>
+      Параметр<b><font color="#008000"> length</font></b> определяет ее длину 
+      и его значение должно совпадать со значением соответствующего параметра 
+      в системном вызове <a href="http://cs.mipt.ru/docs/courses/osstud/man/mmap.htm">mmap()</a>.</font> 
+  </p></blockquote>
+  <blockquote> 
+    <p align="justify"><font face="Times New Roman">При нормальном завершении 
+      системный вызов возвращает значение 0, при возникновении ошибки - значение 
+      -1.</font> 
+  </p></blockquote>
+</dir>
+</body></html>
