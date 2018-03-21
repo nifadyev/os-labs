@@ -36,7 +36,7 @@ int main()
         }
     }
 
-    if((pSharedMemory = (char *)shmat(sharedMemoryDescriptor, (char*)NULL, 0)) == (char *)(-1))
+    if((pSharedMemory = (char *)shmat(sharedMemoryDescriptor, NULL, 0)) == (char *)(-1))
     {
         printf("Error! Cannot attach shared memory\n");
         exit(-1);
