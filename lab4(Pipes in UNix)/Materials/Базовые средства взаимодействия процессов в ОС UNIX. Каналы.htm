@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<meta name="keywords" content="Операционные системы/Базовые средства взаимодействия процессов в ОС UNIX. Каналы" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="eSyr's wiki (Русский)" />
+		<link title="Creative Commons" type="application/rdf+xml" href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=creativecommons" rel="meta" />
+		<title>Операционные системы/Базовые средства взаимодействия процессов в ОС UNIX. Каналы — eSyr's wiki</title>
+		<style type="text/css" media="screen, projection">/*<![CDATA[*/
+			@import "/w/skins/common/shared.css?97";
+			@import "/w/skins/monobook/main.css?97";
+		/*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="/w/skins/common/commonPrint.css?97" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/w/skins/monobook/IE50Fixes.css?97";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/w/skins/monobook/IE55Fixes.css?97";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/w/skins/monobook/IE60Fixes.css?97";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/w/skins/monobook/IE70Fixes.css?97";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/w/skins/common/IEFixes.js?97"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "monobook";
+var stylepath = "/w/skins";
+var wgArticlePath = "/wiki/$1";
+var wgScriptPath = "/w";
+var wgScript = "/w/index.php";
+var wgServer = "http://esyr.org";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Операционные_системы/Базовые_средства_взаимодействия_процессов_в_ОС_UNIX._Каналы";
+var wgTitle = "Операционные системы/Базовые средства взаимодействия процессов в ОС UNIX. Каналы";
+var wgAction = "view";
+var wgRestrictionEdit = [];
+var wgRestrictionMove = [];
+var wgArticleId = "3592";
+var wgIsArticle = true;
+var wgUserName = null;
+var wgUserGroups = null;
+var wgUserLanguage = "ru";
+var wgContentLanguage = "ru";
+var wgBreakFrames = false;
+var wgCurRevisionId = "9460";
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="/w/skins/common/wikibits.js?97"><!-- wikibits js --></script>
+		<script type="text/javascript" src="/w/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/w/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/w/index.php?title=MediaWiki:Monobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/w/index.php?title=-&action=raw&gen=css&maxage=18000";
+/*]]>*/</style>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="/w/skins/common/ajax.js?97"></script>
+		<script type="text/javascript" src="/w/skins/common/ajaxsearch.js?97"></script>
+		<script type="text/javascript">hookEvent("load", sajax_onload);</script>
+	</head>
+<body  class="mediawiki ns-0 ltr page-Операционные_системы_Базовые_средства_взаимодействия_процессов_в_ОС_UNIX_Каналы">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Операционные системы/Базовые средства взаимодействия процессов в ОС UNIX. Каналы</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">Материал из eSyr's wiki.</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Перейти к: <a href="#column-one">навигация</a>, <a href="#searchInput">поиск</a></div>			<!-- start content -->
+			<p>Одним из простейших средств взаимодействия процессов в операционной системе UNIX является механизм <i>каналов</i>. 
+</p>
+<table id="toc" class="toc" summary="Содержание"><tr><td><div id="toctitle"><h2>Содержание</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#.D0.9D.D0.B5.D0.B8.D0.BC.D0.B5.D0.BD.D0.BE.D0.B2.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D1.8B"><span class="tocnumber">1</span> <span class="toctext">Неименованные каналы</span></a>
+<ul>
+<li class="toclevel-2"><a href="#.D0.98.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D0.B0"><span class="tocnumber">1.1</span> <span class="toctext">Использование канала</span></a></li>
+<li class="toclevel-2"><a href="#.D0.A1.D1.85.D0.B5.D0.BC.D0.B0_.D0.B2.D0.B7.D0.B0.D0.B8.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F_.D0.BF.D1.80.D0.BE.D1.86.D0.B5.D1.81.D1.81.D0.BE.D0.B2_.D1.81_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5.D0.BC_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D0.B0"><span class="tocnumber">1.2</span> <span class="toctext">Схема взаимодействия процессов с использованием канала</span></a></li>
+<li class="toclevel-2"><a href="#.D0.A0.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F_.D0.BA.D0.BE.D0.BD.D0.B2.D0.B5.D0.B9.D0.B5.D1.80.D0.B0"><span class="tocnumber">1.3</span> <span class="toctext">Реализация конвейера</span></a></li>
+<li class="toclevel-2"><a href="#.D0.A1.D0.BE.D0.B2.D0.BC.D0.B5.D1.81.D1.82.D0.BD.D0.BE.D0.B5_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.B8.D0.B3.D0.BD.D0.B0.D0.BB.D0.BE.D0.B2_.D0.B8_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D0.BE.D0.B2_.E2.80.93_.C2.AB.D0.BF.D0.B8.D0.BD.D0.B3-.D0.BF.D0.BE.D0.BD.D0.B3.C2.BB"><span class="tocnumber">1.4</span> <span class="toctext">Совместное использование сигналов и каналов – «пинг-понг»</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#.D0.98.D0.BC.D0.B5.D0.BD.D0.BE.D0.B2.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D1.8B"><span class="tocnumber">2</span> <span class="toctext">Именованные каналы</span></a>
+<ul>
+<li class="toclevel-2"><a href="#.D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80:_.D0.9C.D0.BE.D0.B4.D0.B5.D0.BB.D1.8C_.C2.AB.D0.BA.D0.BB.D0.B8.D0.B5.D0.BD.D1.82-.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.C2.BB"><span class="tocnumber">2.1</span> <span class="toctext">Пример: Модель «клиент-сервер»</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "показать"; var tocHideText = "убрать"; showTocToggle(); } </script>
+<a name=".D0.9D.D0.B5.D0.B8.D0.BC.D0.B5.D0.BD.D0.BE.D0.B2.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D1.8B"></a><h2><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=1" title="Править секцию: Неименованные каналы">править</a>]</span> <span class="mw-headline"> Неименованные каналы </span></h2>
+<p><b>Неименованный канал</b> есть некая сущность, в которую можно помещать и извлекать данные, для чего служат два файловых дескриптора, ассоциированных с каналом: один для записи в канал, другой — для чтения. 
+</p><p>Для создания канала служит системный вызов pipe():
+</p>
+<pre>#include &lt;unistd.h&gt;
+int pipe(int *fd)
+</pre>
+<p>Данный системный вызов выделяет в оперативной памяти некоторое ограниченное пространство и возвращает через параметр fd массив из двух файловых дескрипторов: один для записи в канал — fd[1], другой для чтения — fd[0].
+</p><p>Эти дескрипторы являются дескрипторами открытых файлов, с которыми можно работать, используя  такие системные вызовы как read(), write(), dup() и так далее.  Однако следует четко понимать различия между обычным файлом и каналом.
+</p><p>Основные отличительные свойства канала следующие:
+</p>
+<ul><li>В отличие от файла, к неименованному каналу невозможен доступ по имени, т.е. единственная возможность использовать канал – это те файловые дескрипторы, которые с ним ассоциированы
+</li><li>Канал не существует вне процесса, т.е. для существования канала необходим процесс, который его создаст и в котором он будет существовать, для файла это не так
+</li></ul>
+<p>Канал реализует модель <i>последовательного доступа к данным</i> (FIFO), т.е. данные из канала можно прочитать только в той же последовательности, в каком они были записаны. Это означает, что для файловых дескрипторов, ассоциированных с каналом, не определена операция lseek() (при попытке обратиться к этому вызову произойдет ошибка).
+</p><p>Кроме того, существует ряд отличий в поведении операций чтения и записи в канал, а именно:
+</p>
+<ul><li>При чтении из канала:
+<ul><li>если прочитано меньше байтов, чем находится в канале, оставшиеся сохраняются в канале;
+</li><li>если делается попытка прочитать больше данных, чем имеется в канале, и при этом существуют открытые дескрипторы записи, ассоциированные с каналом, будет прочитано (т.е. изъято из канала) доступное количество данных, после чего читающий процесс блокируется до тех пор, пока в канале не появится достаточное количество данных для завершения операции чтения.
+</li><li>процесс может избежать такого блокирования, изменив для канала режим блокировки с использованием системного вызова fcntl(). В неблокирующем режиме в ситуации, описанной выше, будет прочитано доступное количество данных, и управление будет сразу возвращено процессу.
+</li></ul>
+</li></ul>
+<p>При закрытии записывающей стороны канала, в него помещается символ конца файла. После этого процесс, осуществляющий чтение, может выбрать из канала все оставшиеся данные и признак конца файла, благодаря которому блокирования при чтении в этом случае не происходит.
+</p>
+<ul><li>При записи в канал:
+<ul><li>если процесс пытается записать большее число байтов, чем помещается в канал (но не превышающее предельный размер канала), записывается возможное количество данных, после чего процесс, осуществляющий запись, блокируется до тех пор, пока в канале не появится достаточное количество места для завершения операции записи;
+</li><li>процесс может избежать такого блокирования, изменив для канала режим блокировки с использованием системного вызова fcntl(). В неблокирующем режиме в ситуации, описанной выше, будет записано возможное количество данных, и управление будет сразу возвращено процессу.
+</li><li>если же процесс пытается записать в канал порцию данных, превышающую предельный размер канала, то будет записано доступное количество данных, после чего процесс заблокируется до появления в канале свободного места любого размера (пусть даже и всего 1 байт), затем процесс разблокируется, вновь производит запись на доступное место в канале, и если данные для записи еще не исчерпаны, вновь блокируется до появления свободного места и т.д., пока не будут записаны все данные, после чего происходит возврат из вызова write()
+</li><li>если процесс пытается осуществить запись в канал, с которым не ассоциирован ни один дескриптор чтения, то он получает сигнал SIGPIPE (тем самым ОС уведомляет его о недопустимости такой операции).
+</li></ul>
+</li></ul>
+<p>В стандартной ситуации (при отсутствии переполнения) система гарантирует атомарность операции записи, т. е. при одновременной записи нескольких процессов в канал их данные не перемешиваются.
+</p>
+<a name=".D0.98.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D0.B0"></a><h3><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=2" title="Править секцию: Использование канала">править</a>]</span> <span class="mw-headline"> Использование канала </span></h3>
+<p>Пример использования канала в рамках одного процесса – копирование строк. Фактически осуществляется посылка данных самому себе.
+</p>
+<pre>#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+int main(int argc, char **argv)
+{
+char *s = ”chanel”;
+char buf[80];
+int pipes[2];
+pipe(pipes);
+write(pipes[1], s, strlen(s) + 1);
+read(pipes[0], buf, strlen(s) + 1);
+close(pipes[0]);
+close(pipes[1]);
+printf(“%s\n”, buf);
+return 0;
+}
+</pre>
+<p>Чаще всего, однако, канал используется для обмена данными <i>между несколькими процессами</i>. При организации такого обмена используется тот факт, что при порождении сыновнего процесса посредством системного вызова fork() наследуется таблица файловых дескрипторов процесса-отца, т.е. все файловые дескрипторы, доступные процессу-отцу, будут доступны и процессу-сыну. Таким образом, если перед порождением потомка был создан канал, файловые дескрипторы для доступа к каналу будут унаследованы и сыном. В итоге обоим процессам оказываются доступны дескрипторы, связанные с каналом, и они могут использовать канал для обмена данными.
+</p>
+<a name=".D0.A1.D1.85.D0.B5.D0.BC.D0.B0_.D0.B2.D0.B7.D0.B0.D0.B8.D0.BC.D0.BE.D0.B4.D0.B5.D0.B9.D1.81.D1.82.D0.B2.D0.B8.D1.8F_.D0.BF.D1.80.D0.BE.D1.86.D0.B5.D1.81.D1.81.D0.BE.D0.B2_.D1.81_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5.D0.BC_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D0.B0"></a><h3><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=3" title="Править секцию: Схема взаимодействия процессов с использованием канала">править</a>]</span> <span class="mw-headline"> Схема взаимодействия процессов с использованием канала </span></h3>
+<pre>#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+
+int main(int argc, char **argv)
+{
+int fd[2];
+pipe(fd);
+if (fork())
+{/*процесс-родитель*/
+close(fd[0]); /* закрываем ненужный дескриптор */
+write (fd[1], …);
+…
+close(fd[1]); 
+…
+}
+else
+{/*процесс-потомок*/
+close(fd[1]); /* закрываем ненужный дескриптор */
+while(read (fd[0], …))
+{
+…
+}
+…
+}
+}
+
+</pre>
+<p>Аналогичным образом может быть организован обмен через канал между двумя потомками одного порождающего процесса и вообще между <i>любыми родственными процессами</i>, единственным требованием здесь, как уже говорилось, является необходимость создавать канал в порождающем процессе прежде, чем его дескрипторы будут унаследованы порожденными процессами.
+</p><p>Как правило, канал используется как однонаправленное средство передачи данных, т.е. только один из двух взаимодействующих процессов осуществляет запись в него, а другой процесс осуществляет чтение, при этом каждый из процессов <i>закрывает</i> не используемый им дескриптор. Это особенно важно для неиспользуемого дескриптора записи в канал, так как именно при закрытии пишущей стороны канала в него помещается символ конца файла. Если, к примеру, в рассмотренном  процесс-потомок не закроет свой дескриптор записи в канал, то при последующем чтении из канала, исчерпав все данные из него, он будет заблокирован, так как  записывающая сторона канала будет открыта, и следовательно, читающий процесс будет ожидать очередной порции данных.
+</p>
+<a name=".D0.A0.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F_.D0.BA.D0.BE.D0.BD.D0.B2.D0.B5.D0.B9.D0.B5.D1.80.D0.B0"></a><h3><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=4" title="Править секцию: Реализация конвейера">править</a>]</span> <span class="mw-headline"> Реализация конвейера </span></h3>
+<p>Пример реализации конвейера print|wc – вывод программы print будет подаваться на вход программы wc. Программа print печатает некоторый текст. Программа wc считает количество прочитанных строк, слов и символов.
+</p>
+<pre>#include &lt;sys/types.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdio.h&gt;
+int main(int argc, char **argv)
+{
+int fd[2];
+pipe(fd);  /*организован канал*/      
+if (fork()) 
+{ 
+/*процесс-родитель*/
+dup2(fd[1], 1); /* отождествили стандартный вывод с файловым дескриптором канала, предназначенным для записи */
+close(fd[1]);   /* закрыли файловый дескриптор канала, предназначенный для записи */
+close(fd[0]);   /* закрыли файловый дескриптор канала, предназначенный для чтения */
+exelp(“print”, ”print”, 0); /* запустили программу print */
+}
+/*процесс-потомок*/
+dup2(fd[0], 0); /* отождествили стандартный ввод с файловым дескриптором канала,   предназначенным для чтения*/
+close(fd[0]);   /* закрыли файловый дескриптор канала, предназначенный для чтения */
+close(fd[1]);  /* закрыли файловый дескриптор канала, предназначенный для записи */
+execl(“/usr/bin/wc”, ”wc”, 0); /* запустили программу wc */
+}
+</pre>
+<a name=".D0.A1.D0.BE.D0.B2.D0.BC.D0.B5.D1.81.D1.82.D0.BD.D0.BE.D0.B5_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D0.B5_.D1.81.D0.B8.D0.B3.D0.BD.D0.B0.D0.BB.D0.BE.D0.B2_.D0.B8_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D0.BE.D0.B2_.E2.80.93_.C2.AB.D0.BF.D0.B8.D0.BD.D0.B3-.D0.BF.D0.BE.D0.BD.D0.B3.C2.BB"></a><h3><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=5" title="Править секцию: Совместное использование сигналов и каналов – «пинг-понг»">править</a>]</span> <span class="mw-headline"> Совместное использование сигналов и каналов – «пинг-понг» </span></h3>
+<p>Пример программы с <i>использованием каналов и сигналов</i> для осуществления связи между процессами –  весьма типичной ситуации в системе. При этом на канал возлагается роль среды двусторонней передачи информации, а на сигналы – роль системы синхронизации при передаче информации. Процессы посылают друг другу целое число, всякий раз увеличивая его на 1. Когда число достигнет некоего максимума, оба процесса завершаются.
+</p>
+<pre>#include &lt;signal.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+#define MAX_CNT 100
+int target_pid, cnt;
+int fd[2];
+int status;
+
+void SigHndlr(int s)   
+{	
+/* в обработчике сигнала происходит и чтение, и запись */
+	signal(SIGUSR1, SigHndlr);
+		
+	if (cnt &lt; MAX_CNT) 
+	{
+		read(fd[0], &amp;cnt, sizeof(int));
+		printf("%d \n", cnt);
+		cnt++;
+		write(fd[1], &amp;cnt, sizeof(int));
+/* посылаем сигнал второму: пора читать из канала */
+		kill(target_pid, SIGUSR1);
+	}
+	else 
+		if (target_pid == getppid())
+		{ 
+/* условие окончания игры проверяется потомком */
+printf("Child is going to be terminated\n");
+			close(fd[1]); close(fd[0]);
+			/* завершается потомок */
+			exit(0);
+		} else 
+kill(target_pid, SIGUSR1);
+}
+
+int main(int argc, char **argv)
+{
+	pipe(fd); /* организован канал */      
+	signal (SIGUSR1, SigHndlr); 
+/* установлен обработчик сигнала для обоих процессов */
+	cnt = 0;
+
+	if (target_pid = fork()) 
+	{ 
+/* Предку остается только ждать завершения потомка */
+		while(wait(&amp;status) == -1); 
+printf("Parent is going to be terminated\n");
+		close(fd[1]); close(fd[0]);
+		return 0;  
+	} 
+	else 
+	{
+		/* процесс-потомок узнает PID родителя */
+		target_pid = getppid();
+	/* потомок начинает пинг-понг */
+  		write(fd[1], &amp;cnt, sizeof(int));
+		kill(target_pid, SIGUSR1);
+		for(;;); /* бесконечный цикл */
+	}
+}
+</pre>
+<a name=".D0.98.D0.BC.D0.B5.D0.BD.D0.BE.D0.B2.D0.B0.D0.BD.D0.BD.D1.8B.D0.B5_.D0.BA.D0.B0.D0.BD.D0.B0.D0.BB.D1.8B"></a><h2><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=6" title="Править секцию: Именованные каналы">править</a>]</span> <span class="mw-headline"> Именованные каналы </span></h2>
+<p>Рассмотренные выше программные каналы имеют важное ограничение: так как доступ к ним возможен только посредством дескрипторов, возвращаемых при порождении канала, необходимым условием взаимодействия процессов через канал является передача этих дескрипторов по наследству при порождении процесса.
+</p><p><b>Именованные каналы</b> (FIFO-файлы) расширяют свою область применения за счет того, что подключиться к ним может <i>любой процесс в любое время</i>, в том числе и после создания канала. Это возможно благодаря наличию у них <b>имен</b>.
+</p><p>FIFO-файл представляет собой отдельный тип файла в файловой системе UNIX, который обладает всеми атрибутами файла, такими, как <b>имя владельца</b>, <b>права доступа</b> и <b>размер</b>. Для его создания в UNIX System V.3 и ранее используется системный вызов mknod(), а в BSD UNIX и System V.4 – вызов mkfifo() (этот вызов поддерживается и стандартом POSIX):
+</p>
+<pre>#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;unistd.h&gt;
+int mknod (char *pathname, mode_t mode, dev);
+
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+int mkfifo (char *pathname, mode_t mode);
+</pre>
+<p>В обоих вызовах первый аргумент представляет собой имя создаваемого канала, во втором указываются права доступа к нему для владельца, группы и прочих пользователей, и кроме того, устанавливается флаг, указывающий на то, что создаваемый объект является именно FIFO-файлом (в разных версиях ОС он может иметь разное символьное обозначение – S_IFIFO или I_FIFO). Третий аргумент вызова mknod() игнорируется.
+</p><p>После создания именованного канала любой процесс может установит с ним связь посредством системного вызова open(). При этом действуют следующие правила:
+</p>
+<ul><li>если процесс открывает FIFO-файл для чтения, он блокируется до тех пор, пока какой-либо процесс  не откроет тот же канал на запись
+</li><li>если процесс открывает FIFO-файл на запись, он будет заблокирован до тех пор, пока какой-либо процесс  не откроет тот же канал на чтение
+</li><li>процесс может избежать такого блокирования, указав в вызове open() специальный флаг (в разных версиях ОС он может иметь разное символьное обозначение – O_NONBLOCK или O_NDELAY). В этом случае в ситуациях, описанных выше, вызов open() сразу же вернет управление процессу
+</li></ul>
+<p>Правила работы с именованными каналами, в частности, особенности операций чтения-записи, полностью аналогичны неименованным каналам.
+</p>
+<a name=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80:_.D0.9C.D0.BE.D0.B4.D0.B5.D0.BB.D1.8C_.C2.AB.D0.BA.D0.BB.D0.B8.D0.B5.D0.BD.D1.82-.D1.81.D0.B5.D1.80.D0.B2.D0.B5.D1.80.C2.BB"></a><h3><span class="editsection">[<a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit&amp;section=7" title="Править секцию: Пример: Модель «клиент-сервер»">править</a>]</span> <span class="mw-headline"> Пример: Модель «клиент-сервер» </span></h3>
+<p>Рассмотрим пример, где один из процессов является сервером, предоставляющим некоторую услугу, другой же процесс, который хочет воспользоваться этой услугой, является клиентом. Клиент посылает серверу запросы на предоставление услуги, а сервер отвечает на эти запросы. 
+</p><p>Процесс-сервер запускается на выполнение первым, создает именованный канал, открывает его на чтение в неблокирующем режиме и входит в цикл, пытаясь прочесть что-либо. Затем запускается процесс-клиент, подключается к каналу с известным ему именем и записывает в него свой идентификатор. Сервер выходит из цикла, прочитав идентификатор клиента, и печатает его.
+</p>
+<pre>/* процесс-сервер*/	
+#include &lt;stdio.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include &lt;unistd.h&gt;
+
+int main(int argc, char **argv)
+{
+int fd;
+int pid;
+mkfifo("fifo", S_IFIFO | 0666); 
+/*создали специальный файл FIFO с открытыми для всех правами доступа на чтение и запись*/  		
+fd = open("fifo", O_RDONLY | O_NONBLOCK);   	
+/* открыли канал на чтение*/		
+while  (read (fd, &amp;pid, sizeof(int)) == -1)&nbsp;;
+printf("Server&nbsp;%d  got message from&nbsp;%d&nbsp;!\n", getpid(), pid);
+close(fd);
+unlink("fifo");/*уничтожили именованный канал*/
+return 0;
+}
+</pre>
+<pre>/* процесс-клиент*/	
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;fcntl.h&gt;
+int main(int argc, char **argv)
+{
+int fd;
+int pid = getpid( );
+fd = open("fifo", O_RDWR);
+write(fd, &amp;pid, sizeof(int));
+close(fd);
+return 0;
+}
+</pre>
+<!-- Saved in parser cache with key wwwesyrru-mw_:pcache:idhash:3592-0!1!0!!ru!2 and timestamp 20140408193817 -->
+<div class="printfooter">
+Получено с <a href="http://esyr.org/wiki/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B">http://esyr.org/wiki/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B</a></div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Просмотры</h5>
+		<div class="pBody">
+			<ul>
+					 <li id="ca-nstab-main" class="selected"><a href="/wiki/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B" title="Содержание статьи [c]" accesskey="c">Статья</a></li>
+					 <li id="ca-talk" class="new"><a href="/w/index.php?title=%D0%9E%D0%B1%D1%81%D1%83%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5:%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit" title="Обсуждение статьи [t]" accesskey="t">Обсуждение</a></li>
+					 <li id="ca-edit"><a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=edit" title="Эту статью можно изменять. Перед сохранением изменений, пожалуйста, нажмите кнопку предварительного просмотра для визуальной проверки результата [e]" accesskey="e">Править</a></li>
+					 <li id="ca-history"><a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;action=history" title="Журнал изменений страницы [h]" accesskey="h">История</a></li>
+				</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Личные инструменты</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="/w/index.php?title=%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Userlogin&amp;returnto=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B" title="Здесь можно зарегистрироваться в системе, но это необязательно [o]" accesskey="o">Представиться системе</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(/w/images/logo.png);" href="/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+		<div class='portlet' id='p-navigation'>
+		<h5>Навигация</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage"><a href="/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0" title="Перейти на заглавную страницу [z]" accesskey="z">Заглавная страница</a></li>
+				<li id="n-.D0.9D.D0.BE.D0.B2.D0.BE.D1.81.D1.82.D0.B8"><a href="/wiki/%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8">Новости</a></li>
+				<li id="n-.D0.A3.D0.BA.D0.B0.D0.B7.D0.B0.D1.82.D0.B5.D0.BB.D1.8C"><a href="/wiki/%D0%A3%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C">Указатель</a></li>
+				<li id="n-.D0.A4.D1.80.D0.BE.D0.BD.D1.82-.D1.80.D0.B0.D0.B1.D0.BE.D1.82"><a href="/wiki/%D0%A2%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D0%B5_%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D1%8F">Фронт работ</a></li>
+				<li id="n-.D0.92.D0.BD.D0.B5.D1.88.D0.BD.D0.B8.D0.B5-.D1.80.D0.B5.D1.81.D1.83.D1.80.D1.81.D1.8B"><a href="/wiki/%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D0%B8/%D0%A0%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B">Внешние ресурсы</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-.D0.B8.D0.BD.D1.81.D1.82.D1.80.D1.83.D0.BC.D0.B5.D0.BD.D1.82.D1.8B'>
+		<h5>инструменты</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-recentchanges"><a href="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Recentchanges" title="Список последних изменений [r]" accesskey="r">Свежие правки</a></li>
+				<li id="n-randompage"><a href="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Random" title="Посмотреть случайную страницу [x]" accesskey="x">Случайная статья</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-.D0.A0.D0.B0.D0.B7.D0.B4.D0.B5.D0.BB.D1.8B'>
+		<h5>Разделы</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-.D0.9B.D0.B5.D0.BA.D1.86.D0.B8.D0.B8"><a href="/wiki/%D0%9B%D0%B5%D0%BA%D1%86%D0%B8%D0%B8">Лекции</a></li>
+				<li id="n-Linux"><a href="/wiki/%D0%9F%D0%BE%D1%80%D1%82%D0%B0%D0%BB:Linux">Linux</a></li>
+				<li id="n-msu_cmc"><a href="/wiki/Msu_cmc">msu_cmc</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-.D0.A1.D0.BF.D0.B5.D1.86.D0.BA.D1.83.D1.80.D1.81.D1.8B'>
+		<h5>Спецкурсы</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-.D0.A1.D0.BE.D0.B2.D1.80.D0.B5.D0.BC.D0.B5.D0.BD.D0.BD.D0.B0.D1.8F-.D0.BA.D1.80.D0.B8.D0.BF.D1.82.D0.BE.D0.B3.D1.80.D0.B0.D1.84.D0.B8.D1.8F"><a href="/wiki/%D0%9A%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F">Современная криптография</a></li>
+				<li id="n-.D0.94.D0.B8.D0.B7.D0.B0.D0.B9.D0.BD-.D0.B8-.D1.80.D0.B5.D0.B0.D0.BB.D0.B8.D0.B7.D0.B0.D1.86.D0.B8.D1.8F-.D0.9E.D0.A1-FreeBSD"><a href="/wiki/FreeBSD">Дизайн и реализация ОС FreeBSD</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-9_.D1.81.D0.B5.D0.BC.D0.B5.D1.81.D1.82.D1.80'>
+		<h5>9 семестр</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-.D0.A4.D0.A1.D0.92.D0.9F"><a href="/wiki/%D0%9C%D0%A4%D0%A1%D0%9F">ФСВП</a></li>
+				<li id="n-.D0.A2.D0.B5.D0.BE.D1.80.D0.B8.D1.8F-.D0.B8.D0.B3.D1.80.D1.8B-.D0.B8-.D0.98.D0.9E"><a href="/wiki/%D0%A2%D0%B8%D0%B3%D1%80%D1%8B">Теория игры и ИО</a></li>
+				<li id="n-.D0.98.D1.81.D1.82.D0.BE.D1.80.D0.B8.D1.8F-.D0.BC.D0.B0.D1.82.D0.B5.D0.BC.D0.B0.D1.82.D0.B8.D0.BA.D0.B8"><a href="/wiki/%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B8">История математики</a></li>
+				<li id="n-.D0.A0.D0.BE.D1.81.D1.81.D0.B8.D0.B9.D1.81.D0.BA.D0.BE.D0.B5-.D0.BF.D1.80.D0.B0.D0.B2.D0.BE"><a href="/wiki/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BF%D1%80%D0%B0%D0%B2%D0%B0">Российское право</a></li>
+				<li id="n-.D0.98.D1.81.D1.82.D0.BE.D1.80.D0.B8.D1.8F-.D1.80.D0.B5.D0.BB.D0.B8.D0.B3.D0.B8.D0.B8"><a href="/wiki/%D0%98%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F_%D1%80%D0%B5%D0%BB%D0%B8%D0%B3%D0%B8%D0%B8">История религии</a></li>
+				<li id="n-.D0.9F.D0.9E.D0.94"><a href="/wiki/%D0%9F%D0%9E%D0%94_%283_%D0%BF%D0%BE%D1%82%D0%BE%D0%BA%29">ПОД</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-7_.D1.81.D0.B5.D0.BC.D0.B5.D1.81.D1.82.D1.80'>
+		<h5>7 семестр</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-.D0.92.D1.8B.D1.87.D0.B8.D1.81.D0.BB.D0.B8.D1.82.D0.B5.D0.BB.D1.8C.D0.BD.D1.8B.D0.B5-.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D1.8B"><a href="/wiki/%D0%92%D1%8B%D1%87%D0%B8%D1%81%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B">Вычислительные системы</a></li>
+				<li id="n-.D0.9E.D0.9E.D0.90.D0.B8.D0.9F"><a href="/wiki/%D0%9E%D0%9E%D0%90%D0%B8%D0%9F">ООАиП</a></li>
+				<li id="n-.D0.98.D0.98"><a href="/wiki/%D0%98%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D0%98%D0%BD%D1%82%D0%B5%D0%BB%D0%BB%D0%B5%D0%BA%D1%82">ИИ</a></li>
+				<li id="n-.D0.9C.D0.B0.D1.82.D0.B5.D0.BC.D0.B0.D1.82.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B0.D1.8F-.D0.BB.D0.BE.D0.B3.D0.B8.D0.BA.D0.B0"><a href="/wiki/%D0%9C%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%9B%D0%BE%D0%B3%D0%B8%D0%BA%D0%B0">Математическая логика</a></li>
+				<li id="n-.D0.A4.D1.83.D0.BD.D0.BA.D1.86.D0.B8.D0.BE.D0.BD.D0.B0.D0.BB.D1.8C.D0.BD.D1.8B.D0.B9-.D0.B0.D0.BD.D0.B0.D0.BB.D0.B8.D0.B7"><a href="/wiki/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7">Функциональный анализ</a></li>
+				<li id="n-.D0.A1.D0.BE.D1.86.D0.B8.D0.BE.D0.BB.D0.BE.D0.B3.D0.B8.D1.8F"><a href="/wiki/%D0%A1%D0%BE%D1%86%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F">Социология</a></li>
+				<li id="n-.D0.9F.D0.B0.D1.80.D0.B0.D0.BB.D0.BB.D0.B5.D0.BB.D1.8C.D0.BD.D0.B0.D1.8F-.D0.BE.D0.B1.D1.80.D0.B0.D0.B1.D0.BE.D1.82.D0.BA.D0.B0-.D0.B4.D0.B0.D0.BD.D0.BD.D1.8B.D1.85"><a href="/wiki/%D0%9F%D0%B0%D1%80%D0%B0%D0%BB%D0%BB%D0%B5%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F_%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0_%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D1%85">Параллельная обработка данных</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-5_.D1.81.D0.B5.D0.BC.D0.B5.D1.81.D1.82.D1.80'>
+		<h5>5 семестр</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-.D0.91.D0.B0.D0.B7.D1.8B-.D0.B4.D0.B0.D0.BD.D0.BD.D1.8B.D1.85"><a href="/wiki/%D0%91%D0%B0%D0%B7%D1%8B_%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D1%85">Базы данных</a></li>
+				<li id="n-.D0.AF.D0.B7.D1.8B.D0.BA.D0.B8-.D0.BF.D1.80.D0.BE.D0.B3.D1.80.D0.B0.D0.BC.D0.BC.D0.B8.D1.80.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D1.8F"><a href="/wiki/%D0%AF%D0%B7%D1%8B%D0%BA%D0%B8_%D0%9F%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F">Языки программирования</a></li>
+				<li id="n-.D0.AD.D0.BA.D0.BE.D0.BD.D0.BE.D0.BC.D0.B8.D1.87.D0.B5.D1.81.D0.BA.D0.B8.D0.B5-.D0.9D.D0.B0.D1.83.D0.BA.D0.B8"><a href="/wiki/%D0%AD%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B0">Экономические Науки</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-3_.D1.81.D0.B5.D0.BC.D0.B5.D1.81.D1.82.D1.80'>
+		<h5>3 семестр</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-.D0.9E.D0.BF.D0.B5.D1.80.D0.B0.D1.86.D0.B8.D0.BE.D0.BD.D0.BD.D1.8B.D0.B5-.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D1.8B"><a href="/wiki/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B">Операционные системы</a></li>
+			</ul>
+		</div>
+	</div>
+		<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Поиск</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Искать это слово [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Перейти" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Найти" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Инструменты</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Whatlinkshere/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B" title="Список всех страниц, которые ссылаются на эту страницу [j]" accesskey="j">Ссылки сюда</a></li>
+				<li id="t-recentchangeslinked"><a href="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Recentchangeslinked/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B" title="Последние изменения в страницах, на которые ссылается эта страница [k]" accesskey="k">Связанные правки</a></li>
+<li id="t-upload"><a href="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Upload" title="Загрузить изображения или мультимедиа-файлы [u]" accesskey="u">Загрузить файл</a></li>
+<li id="t-specialpages"><a href="/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%D0%B0%D1%8F:Specialpages" title="Список служебных страниц [q]" accesskey="q">Спецстраницы</a></li>
+				<li id="t-print"><a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;printable=yes" title="Версия для печати этой страницы [p]" accesskey="p">Версия для печати</a></li>				<li id="t-permalink"><a href="/w/index.php?title=%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5_%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B/%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5_%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%D0%B0_%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F_%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2_%D0%B2_%D0%9E%D0%A1_UNIX._%D0%9A%D0%B0%D0%BD%D0%B0%D0%BB%D1%8B&amp;oldid=9460" title="Постоянная ссылка на эту версию страницы">Постоянная ссылка</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="/w/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+				<div id="f-copyrightico"><a rel='license' href='http://creativecommons.org/licenses/by-sa/3.0/'><img alt='Creative Commons License' style='border-width:0' src='/w/images/somerights20.png' /></a> <a rel='license' href='http://www.gnu.org/copyleft/fdl.html'><img border='0' src='/w/images/gnu-fdl.png' alt='GNU Free Documentation License' /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> Последнее изменение этой страницы: 12:05, 6 января 2012.</li>
+				<li id="viewcount">К этой странице обращались 3281 раз.</li>
+				<li id="privacy"><a href="/wiki/eSyr%27s_wiki:%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0_%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="eSyr's wiki:Политика конфиденциальности">Политика конфиденциальности</a></li>
+				<li id="about"><a href="/wiki/eSyr%27s_wiki:%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5" title="eSyr's wiki:Описание">Описание eSyr's wiki</a></li>
+				<li id="disclaimer"><a href="/wiki/eSyr%27s_wiki:%D0%9E%D1%82%D0%BA%D0%B0%D0%B7_%D0%BE%D1%82_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8" title="eSyr's wiki:Отказ от ответственности">Отказ от ответственности</a></li>
+			</ul>
+		</div>
+		
+	
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+</div>
+<!-- Served in 0.265 secs. --></body></html>

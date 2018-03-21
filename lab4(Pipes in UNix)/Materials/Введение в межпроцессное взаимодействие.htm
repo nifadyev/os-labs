@@ -1,0 +1,776 @@
+<html>
+<head>
+<title>Программирование для Linux. Linux API – Введение в межпроцессное
+взаимодействие</title>
+<link rel="stylesheet" href="/css/citforum.css">
+<style>
+
+</style>
+
+<meta http-equiv="content-type" content="text/html; charset=Windows-1251">
+</head>
+<body bgcolor=#FFFFFF link=#006890 vlink=#003860 alink=#800000 text=#000000 topmargin="0" marginheight="0">
+<a name=top></a>
+
+
+
+
+
+<!-- counters -->
+<table cellpadding=0 cellspacing=0 border=0>
+<tr>
+<td><!--TopList COUNTER--><script language="JavaScript"><!--
+d=document;js=10;a=';r='+escape(d.referrer)
+//--></script><script language="JavaScript1.1"><!--
+js=11;a+=';j='+navigator.javaEnabled()
+//--></script><script language="JavaScript1.2"><!--
+js=12;s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+//--></script><script language="JavaScript1.3"><!--
+js=13//--></script><script language="JavaScript"><!--
+d.write('<img src="http://top.list.ru/counter'+
+'?id=26978;js='+js+a+'" alt="" height=1 width=1>')
+if(js>11)d.write('<'+'!-- ')//--></script><noscript><img
+src="http://top.list.ru/counter?js=na;id=26978"
+height=1 width=1 alt=""></noscript><script language="JavaScript"><!--
+if(js>11)d.write('--'+'>')
+//--></script><!--TopList COUNTER--></td>
+<td><!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<img src="http://counter.yadro.ru/hit?r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+';i'+escape('Жж'+document.title)+';'+Math.random()+
+'" width=1 height=1 alt="">')//--></script><!--/LiveInternet--></td>
+<td><img src="http://counter.rambler.ru/top100.cnt?13078" alt="" width=1 height=1 border=0></td>
+</tr></table>
+<!-- end of counters -->
+
+
+
+<center><table width=990 cellpadding=0 cellspacing=0>
+<tr><td>
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr valign=bottom>
+  <td align="left"><a href=/><img src=/pictures/logos/citlogo8.gif width=140 height=44 border=0 alt=Logo></a></td>
+
+      <td align="left" style="padding-left: 200px; padding-bottom: 5px"><font size="2"><a class=head href=http://forum.citforum.ru/>Форумы</a></font></td>
+      <td align="left" style="padding-left: 50px; padding-bottom: 5px"><font size="2"><a class=head href=http://citforum.ru/gazeta/>Газета</a></font></td>
+      <td align="right" width="100%" style="padding-bottom: 10px"><nobr><font size=2><b>Море(!) аналитической информации!</b></font></nobr></td>
+    </tr>
+    </table>
+
+
+
+
+<center style="margin-top: 3px">
+
+<!--  AdRiver code START. Type:728x90 Site: citforum PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=137295&bn=1&target=blank&bt=36&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=728 height=90 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=137295&bn=1&bt=36&pz=0&rnd=1013420086" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=137295&bn=1&bt=36&pz=0&rnd=1013420086" alt="-AdRiver-" border=0 width=728 height=90></a>
+</noscript>
+<!--  AdRiver code END  -->
+
+
+</center>
+
+
+</td></tr>
+<tr><td>
+
+<table cellpadding=0 cellspacing=0 border=0 width=100% style="padding-top: 3px">
+<tr><td>
+<table   cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=931 height=1 alt="" border=0></td></tr>
+<tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 alt="" border=0></td></tr>
+<tr><td bgcolor=#008080>
+
+<table cellspacing=1 cellpadding=3 border=0 width=100%>
+<tr>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/consulting/>IT-консалтинг</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/SE/>Software Engineering</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/programming/>Программирование</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/database/>СУБД</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/security/>Безопасность</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/internet/>Internet</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/nets/>Сети</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/operating_systems/>Операционные системы</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/hardware/>Hardware</a></font></td>
+<!--
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/faq/>FAQ (ЧаВО)</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/howto/>HOWTO</a></font></td>
+--> 
+</tr>
+</table>
+
+</td></tr>
+</table>
+
+</td></tr>
+<tr><td>
+<table cellpadding=0 cellspacing=0 border=0 width=100% style="padding-top: 3px">
+<tr valign=top>
+
+<td width=98% style="padding: 0 5px">
+
+
+<div class="document _ga1_on_">
+<!--B2BCONTEXT_CONTENT_BEGIN-->
+
+<div align="right"><i>2007 г.</i></div>
+<h3>Linux API – Введение в межпроцессное
+взаимодействие</h3>
+Статья из серии "<b><a target=_blank href=../borovsky/>Программирование для Linux</a></b>", журнал <a target=_blank href=http://linuxformat.ru/>Linux Format</a><p>
+<i><a href="mailto:anb@symmetrica.net">Андрей Боровский</a>, <a href="http://symmetrica.net/" target="_blank">symmetrica.net</a></i>
+
+журнал <a target=_blank href=http://linuxformat.ru/>Linux Format</a>
+
+<div align="justify">
+
+<p>Наличие в Unix-системах простых и эффективных средств взаимодействия
+между процессами оказало программирование в Unix не менее важное влияние,
+чем представление объектов системы в виде файлов. Благодаря межпроцессному
+взаимодействию (<i>Inter-Process Communication, IPC</i>) разработчик (и пользователь)
+может разбить решение сложной задачи на несколько простых операций, каждая
+из которых доверяется отдельной небольшой программе. Последовательная
+обработка одной задачи несколькими простыми программами очень похожа на
+конвейерное производство (среди многих значений английского pipeline есть и
+«конвейер», но в этой статье мы для перевода слова pipe будем пользоваться
+принятым в отечественной литературе термином «канал» [<a href="#3">3</a>]. Альтернативой
+конвейерному подходу являются большие монолитные пакеты, построенные по
+принципу «все в одном». Использование набора простых утилит для решения
+одной сложной задачи требует несколько большей квалификации со стороны
+пользователя, но взамен предоставляет гибкость, не достижимую при
+использовании монолитных «монстров». Наборы утилит, использующих открытые
+протоколы IPC, легко наращивать и модифицировать. Разбиение сложных задач на
+сравнительно небольшие подзадачи также позволяет снизить количество ошибок,
+допускаемых программистами (см. <a href="#vrez">врезку</a>). Помимо всего этого у IPC есть еще
+одно важное преимущество. Программы, использующие IPC, могут «общаться»
+друг с другом практически также эффективно, как и с пользователем, в результате
+чего появляется возможность автоматизировать выполнение сложных задач.
+Могущество скриптовых языков Unix и Linux во многом основано на возможностях
+IPC.
+
+<a name="vrez"></a>
+<BLOCKQUOTE><i>
+<b>Закон Брукса</b><br><br>
+Фредерик Брукс, автор книги «Мифический человеко-месяц», высказал
+предположение (известное как «закон Брукса»), что количество ошибок в
+проекте должно быть пропорционально квадрату числа участников проекта, тогда
+как объем полезной работы при увеличении числа участников проекта растет
+линейно. Закон Брукса означал, что на определенном этапе развития проекта
+любая попытка привлечь к разработке новых программистов приводит
+лавинообразному росту числа ошибок (а значит все больше и больше работы
+требуется на их выявление и исправление). Если бы закон Брукса выполнялся, то
+для всех проектов существовал бы верхний порог сложности, при попытке
+превысить который КПД разработки начинал бы стремительно падать. Что же
+касается открытой модели разработки ПО, то она, с точки зрения закона Брукса,
+была бы невозможна в принципе. Для того, чтобы понять, в чем Ф. Брукс
+ошибался, следует рассмотреть исходные посылки его рассуждений. Закон
+Брукса основан двух предположениях (а) ошибки чаще возникают на стыке
+элементов проекта, выполняемых разными разработчиками (соответственно, чем
+больше таких «швов», тем больше ошибок); (б) модель взаимодействия
+разработчиков представляет собой полный граф (то есть, каждый разработчик
+взаимодействует со всеми остальными участниками проекта), число ребер
+которого пропорционально квадрату числа вершин. Ни то, ни другое
+утверждение, вообще говоря, неверно. В частности, при программировании
+«канальных» утилит всем участникам проекта нет надобности непосредственно
+контактировать между собой. Каждая группа разработчиков должна следовать
+только фиксированному протоколу обмена данными между программами, так что
+в этом случае число ошибок подчиняется линейной, а не квадратичной,
+зависимости.</i></BLOCKQUOTE>
+
+<p>В этой статье мы ограничимся рассмотрением IPC с помощью каналов
+различных типов. Предполагается, что читатели статьи являются опытными
+пользователями Linux, и, во всяком случае, знают, как создаются каналы из
+нескольких программ с помощью командной строки. С точки зрения
+программиста работа, программ в канале, организованном с помощью символа “|”,
+выглядит очень просто. Данные со стандартного потока вывода одной программы
+перенаправляются на стандартный поток ввода другой программы, чей
+стандартный поток вывода может быть также перенаправлен. Но как быть в том
+случае, если необходимо использовать канал внутри самой программы?
+
+<h4>Неименованные каналы</h4>
+Самый распространенный вариант внутри-программного использования
+каналов: программа запускает другую программу и считывает данные, которые та
+выводит в свой стандартный поток вывода. С помощью этого трюка разработчик
+может использовать в своей программе функциональность другой программы, не
+вмешиваясь во внутренние детали ее работы. Для решения этой задачи мы
+воспользуемся функциями popen(3) и pclose(3). Формально эти функции подобны
+функциям fopen(3) и fclose(3). Функция popen() запускает внешнюю программу и
+возвращает вызвавшему ее приложению указатель на структуру FILE, связанный
+либо со стандартным потоком ввода, либо со стандартным потоком вывода
+запущенного процесса. Первый параметр функции popen() - строка, содержащая
+команду, запускающую внешнюю программу. Второй параметр определяет, какой
+из стандартных потоков (вывода или ввода) будет возвращен. Аргумент “w”
+соответствует потоку ввода запускаемой программы, в этом случае приложение,
+вызвавшее popen(), записывает данные в поток. Аргумент “r” соответствует потоку
+вывода. Функция pclose() служит для завершения работы с внешним приложением
+и закрытием канала. Для демонстрации работы с функциями popen()/pclose() мы
+напишем небольшую программу makelog (полный текст программы можно найти
+<a href="linapi2.tar.gz" target="_blank"><b><i>здесь</i></b></a> в файле makelog.c) Программа makelog выполняет команду оболочки,
+переданную ей в качестве параметра и записывает данные, выводимые этой
+командой, одновременно на стандартный терминал и в файл log.txt (аналогичными
+функциями обладает стандартная команда tee). Например, если скомпилировать
+программу:
+<pre>
+gcc makelog.c -o makelog
+а затем скомандовать
+makelog "ls -al"
+</pre>
+на экране терминала будут распечатаны данные, выводимые командой
+оболочки ls -al, а в рабочей директории программы makelog будет создан файл
+log.txt, содержащий те же данные. Кавычки вокруг команды оболочки нужны для
+того, чтобы программа makelog получала строку вызова команды как один
+параметр командной строки.
+<p>Как читатель наверняка уже догадался, изюминка программы makelog
+заключается в использовании функции popen(). Рассмотрим фрагмент исходного
+текста программы:
+<pre>f = popen(argv[1], "r");</pre>
+<p>Эта операция очень похожа на открытие обычного файла для чтения.
+Переменная f имеет тип FILE *, но в параметре argv[1] функции popen передается
+не имя файла, а команда на запуск программы или команды оболочки, например,
+"ls -al". Если вызов popen() был успешен, мы можем считывать данные, выводимые
+запущенной командой, с помощью обычной функции fread(3):
+<pre>fread(buf, 1, BUF_SIZE, f)</pre>
+<p>Особенность функции popen() заключается в том, что эта функция не
+возвращает NULL, даже если переданная ей команда не является корректной.
+Самый простой способ обнаружить ошибку в этой ситуации - попытаться прочесть
+данные из потока вывода. Если в потоке вывода нет данных (fread() возвращает
+значение 0), значит произошла ошибка. Для вывода данных, прочитанных с
+помощью fread(), на терминал мы используем функцию write() с указанием
+дескриптора стандартного потока вывода:
+<pre>write(1, buf, len);</pre>
+<p>Параллельно эти же данные записываются в файл на диске. По окончании
+чтения данных открытый канал нужно закрыть:
+<pre>pclose(f);</pre>
+<p>Следует иметь в виду, что pclose() вернет управление вызывающему потоку
+только после того как запущенное с помощью popen() приложение завершит свою
+работу.
+<p>В заключение отметим еще одну особенность функции popen(). Для выполнения
+переданной ей команды popen() сперва запускает собственный экземпляр
+оболочки, что с одной стороны хорошо, а с другой - не очень. Хорошо это потому,
+что при вызове popen() автоматически выполняются внутренние операции
+оболочки (такие как обработка шаблонов имен файлов), используются переменные
+окружения типа PATH и HOME и т.п. Отрицательная сторона подхода,
+применяемого popen(), связана с дополнительными накладными расходы на запуск
+процесса оболочки в том случае, когда для выполнения команды оболочка не
+нужна.
+<p>Для обмена данными с внешним приложением функция popen() использует
+каналы неявным образом. В своих программах мы можем использовать каналы и
+непосредственно. Наиболее распространенный тип каналов, - неименованные
+однонаправленные каналы (anonymous pipes), создаваемые функцией pipe(2). На
+уровне интерфейса программирования такой канал представляется двумя
+дескрипторами файлов, один из которых служит для чтения данных, а другой - для
+записи. Каналы не поддерживают произвольный доступ, т. е. данные могут
+считываться только в том же порядке, в котором они записывались.
+Неименованные каналы используются преимущественно вместе с функцией fork(2)
+и служат для обмена данными между родительским и дочерним процессами. Для
+организации подобного обмена данными, сначала, с помощью функции pipe(),
+создается канал. Функции pipe() передается единственный параметр - массив
+типа int, состоящий из двух элементов. В первом элементе массива функция
+возвращает дескриптор файла, служащий для чтения данных из канала (выход
+канала), а во втором - дескриптор для записи (вход). Затем, с помощью функции
+fork() процесс «раздваивается». Дочерний процесс наследует от родительского
+процесса оба дескриптора, открытых с помощью pipe(), но, также как и
+родительский процесс, он должен использовать только один из дескрипторов.
+Направление передачи данных между родительским и дочерним процессом
+определяется тем, какой дескриптор будет использоваться родительским
+процессом, а какой - дочерним. Продемонстрируем изложенное на простом
+примере программы pipes.c, использующей функции pipe() и fork().
+<pre>
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;sys/types.h&gt;
+int main (int argc, char * argv[])
+{ int pipedes[2];
+pid_t pid;
+pipe(pipedes);
+pid = fork();
+if ( pid &gt; 0 ) {
+char *str = "String passed via pipe\n";
+close(pipedes[0]);
+write(pipedes[1], (void *) str, strlen(str) + 1);
+close(pipedes[1]);
+} else {
+char buf[1024];
+int len;
+close(pipedes[1]);
+while ((len = read(pipedes[0], buf, 1024)) != 0)
+write(2, buf, len);
+close(pipedes[0]);
+}
+return 0;
+}
+</pre>
+<p>Оба дескриптора канала хранятся в переменной pipedes. После вызова fork()
+процесс раздваивается и родительский процесс (тот, в котором fork() вернула
+ненулевое значение, равное, кстати, PID дочернего процесса) закрывает
+дескриптор, открытый для чтения, и записывает данные в канал, используя
+дескриптор, открытый для записи (pipedes[1]). Дочерний процесс (в котором fork()
+вернула 0) первым делом закрывает дескриптор, открытый для записи, и затем
+считывает данные из канала, используя дескриптор, открытый для чтения
+(pipedes[0]). Назначение дескрипторов легко запомнить, сопоставив их с
+аббревиатурой I/O (первый дескриптор - для чтения (input), второй - для записи
+(output)). Стандарт POSIX предписывает, чтобы каждый процесс, получивший оба
+канальных дескриптора, закрывал тот дескриптор, который ему не нужен, перед
+тем, как начать работу с другим дескриптором, и хотя в системе Linux этим
+требованием можно пренебречь, лучше все же придерживаться строгих правил.
+В нашем примере нам не нужно беспокоиться о синхронизации передачи
+данных, поскольку ядро системы выполнит всю трудную работу за нас. Но в жизни
+встречаются и не столь тривиальные случаи. Например, ничто не мешает нам
+создать несколько дочерних процессов с помощью нескольких вызовов fork(). Все
+эти процессы могут использовать один и тот же канал, при условии, что каждый
+процесс использует только один из дескрипторов pipdes, согласно его назначению.
+В этой ситуации нам пришлось бы выполнять синхронизацию передачи данных
+явным образом.
+
+<BLOCKQUOTE><i>
+<b>Как канал передает данные</b><br><br>
+Для передачи данных по каналу используются специальные объекты ядра
+системы, называемые буферами каналов (<i>pipe buffers</i>). Даже если предыдущая
+запись заполнила буфер не полностью, повторная запись данных в буфер
+становится возможной только после того, как прежде записанные данные будут
+прочитаны. Это означает, что если разные процессы, пишущие данные в один и
+тот же канал, передают данные блоками, размеры которых не превышают объем
+буферов, данные из блоков разных процессов не будут перемешиваться между
+собой. Использование этой особенности каналов существенно упрощает
+синхронизацию передачи данных. Узнать размер буфера можно с помощью
+вызова функции</i>
+<pre>fpathconf(pipedes, _PC_PIPE_BUF)</pre>
+<i>где pipedes - дескриптор канала. На архитектуре IA32 размер буфера
+составляет 4 килобайта. Начиная с ядра 2.6.11, каждый канал может
+использовать до 16 буферов, что существенно повышает производительность
+каналов.</i></BLOCKQUOTE>
+
+
+<p>Познакомившись с неименованными каналами, мы можем самостоятельно
+реализовать аналог функции popen() без «дополнительных расходов» (то есть, без
+запуска процесса оболочки). Напишем небольшую программу, которая запускает
+утилиту netstat, читает данные, выводимые этой утилитой, и выводит их на экран.
+Если бы мы использовали для этой цели функцию popen(), то получили бы доступ к
+потоку вывода netstat с помощью
+<pre>popen("netstat", "r");</pre>
+и скопировали данные на экран. Этот способ прост, но не эффективен. Мы
+напишем другую программу (файл printns.c). Структура этой программы та же,
+что и в предыдущем примере, только теперь родительский процесс читает данные
+с помощью канала. Самое интересное происходит в дочернем процессе, где
+выполняется последовательность функций:
+<pre>
+close(pipedes[0]);
+dup2(pipedes[1], 1);
+execve("/bin/netstat", NULL, NULL);
+</pre>
+<p>С помощью функции dup2(2) мы перенаправляем стандартный поток вывода
+дочернего процесса (дескриптор стандартного потока вывода равен 1) в канал,
+используя дескриптор pipdes[1], открытый для записи. Далее с помощью функции
+execve(2) мы заменяем образ дочернего процесса процессом netstat (обратите
+внимание, что поскольку в нашем распоряжении нет оболочки с ее переменной
+окружения PATH, путь к исполнимому файлу netstat нужно указывать полностью).
+В результате родительский процесс может читать стандартный вывод netstat через
+поток, связанный с дескриптором pipdes[0] (и никакой оболочки!).
+Именованные каналы
+<p>Хотя в приведенном выше примере неименованные каналы используются
+только для передачи данных между процессами, связанными «родственными
+узами», существует возможность использовать их и для передачи данных между
+совершенно разными процессами. Для этого нужно организовать передачу
+дескрипторов канала между неродственными процессами, как это описано,
+например, в [<a href="#2">2</a>]. Однако, передача дескрипторов стороннему процессу носит
+скорее характер трюка (или «хака»), и мы на ней останавливаться не будем. Для
+передачи данных между неродственными процессами мы воспользуемся
+механизмом именованных каналов (named pipes), который позволяет каждому
+процессу получить свой, «законный» дескриптор канала. Передача данных в этих
+каналах (как, впрочем, и в однонаправленных неименованных каналах)
+подчиняется принципу FIFO (первым записан - первым прочитан), поэтому в
+англоязычной литературе иногда можно встретить названия FIFO pipes или
+просто FIFOs. Именованные каналы отличаются от неименованных наличием
+имени (странно, не правда ли?), то есть идентификатора канала, потенциально
+видимого всем процессам системы. Для идентификации именованного канала
+создается файл специального типа pipe. Это еще один представитель семейства
+виртуальных файлов Unix, не предназначенных для хранения данных (размер
+файла канала всегда равен нулю). Файлы именованных каналов являются
+элементами VFS, как и обычные файлы Linux, и для них действуют те же правила
+контроля доступа. Файлы именованных каналов создаются функцией mkfifo(3).
+Первый параметр этой функции - строка, в которой передается имя файла,
+идентифицирующего канал, второй параметр - маска прав доступа к файлу.
+Функции mkfifo() создает канал и файл соответствующего типа. Если указанный
+файл канала уже существует, mkfifo() возвращает -1, (переменная errno принимает
+значение EEXIST). После создания файла канала процессы, участвующие в обмене
+данными, должны открыть этот файл либо для записи, любо для чтения. После
+закрытия файла канала, файл (и канал) продолжают существовать. Для того,
+чтобы закрыть сам канал, нужно удалить его файл, например с помощью
+последовательных вызовов unlink(2).
+<p>Рассмотрим работу именованного канала на примере простой системы клиент-
+сервер. Программа-сервер создает канал и передает в него текст, вводимый
+пользователем с клавиатуры. Программа-клиент читает текст и выводит его на
+терминал. Программы из этого примера можно рассматривать как упрощенный
+вариант системы мгновенного обмена сообщениями между пользователями
+многопользовательской ОС. Исходный текст программы-сервера хранится в файле
+typeserver.c. Вызов функции mkfifo() создает файл-идентификатор канала в
+рабочей директории программы:
+<pre>
+mkfifo(FIFO_NAME, 0600);
+</pre>
+где FIFO_NAME - макрос, задающий имя файла канала (в нашем случае -
+"./fifofile").
+
+<p>В качестве маски доступа мы используем восьмеричное значение 0600,
+разрешающее процессу с аналогичными реквизитами пользователя чтение и
+запись (можно было бы использовать маску 0666, но на мы на всякий случай
+воздержимся от упоминания Числа Зверя, пусть даже восьмеричного, в нашей
+программе). Для краткости мы не проверяем значение, возвращенное mkfifo(), на
+предмет ошибок. В результате вызова mkfifo() с заданными параметрами в рабочей
+директории программы должен появиться специальный файл fifofile. Файл-
+менеджер KDE отображает файлы канала с помощью красивой пиктограммы,
+изображающей приоткрытый водопроводный кран. Далее в программе-сервере мы
+просто открываем созданный файл для записи:
+<pre>f = fopen(FIFO_NAME, "w");</pre>
+<p>Считывание данных, вводимых пользователем, выполняется с помощью
+getchar(), а с помощью функции fputc() данные передаются в канал. Работа
+сервера завершается, когда пользователь вводит символ “q”. Исходный текст
+программы-клиента можно найти в файле typeclient.c. Клиент открывает файл
+fifofile для чтения как обычный файл:
+
+<pre>f = fopen(FIFO_NAME, "r");</pre>
+
+<p>Символы, передаваемые по каналу, считываются с помощью функции fgetc() и
+выводятся на экран терминала с помощью putchar(). Каждый раз, когда
+пользователь сервера наживает ввод, функция fflush(), вызываемая сервером (см.
+файл typeserver.c), выполняет принудительную очистку буферов канала, в
+результате чего клиент считывает все переданные символы. Получение символа
+“q” завершает работу клиента.
+<p>Скомпилируйте программы typeserver.c и typeclient.c в одной директории.
+Запустите сначала сервер, потом клиент в разных окнах терминала. Печатайте
+текст в окне сервера. После каждого нажатия клавиши [Enter] клиент должен
+отображать строку, напечатанную на сервере.
+<p>Для создания файла FIFO можно воспользоваться также функцией mknod(2),
+предназначенной для создания специальных файлов различных типов (FIFO,
+сокеты, файлы устройств и обычные файлы для хранения данных). В нашем случае
+вместо
+<pre>mkfifo(fname, 0600);</pre>
+можно было бы написать
+<pre>mknod(fname, S_IFIFO, 0);</pre>
+<p>Одной из сильных сторон Unix/Linux IPC является возможность организовывать
+взаимодействие между программами, которые не только ничего не знают друг о
+друге, но и используют разные механизмы ввода/вывода. Сравним нашу программу
+typeclient и команду ls. Казалось бы, между ними нет ничего общего - typeclient
+получает данные, используя именованный канал, а ls выводит содержимое
+директории в стандартный поток вывода. Однако, мы можем организовать
+передачу данных от ls к typeclient с помощью всего лишь пары команд bash! В
+директории программы typeclient дайте команду:
+<pre>mknod fifofile p</pre>
+<p>Эта команда создаст файл канала fifofile также, как это сделала бы программа
+typeserver. Запустите программу typeclient, а затем в другом окне терминала дайте
+команду, наподобие
+<pre>ls -al &gt; /path/fifofile</pre>
+где /path/fifofile - путь к файлу FIFO. В результате, программа typeclient
+распечатает содержимое соответствующей директории. Главное, чтобы в потоке
+данных не встретился символ “q”, завершающий ее работу.
+<p>Каналы представляют собой простое и удобное средство передачи данных,
+которое, однако, подходит не во всех ситуациях. Например, с помощью каналов
+довольно трудно организовать обмен асинхронными сообщениями между
+процессами. В следующей статье мы рассмотрим другие средства IPC Unix/Linux -
+очереди сообщений и семафоры.
+
+
+
+<h4>Рекомендуемая литература:</h4>
+
+<table border="0" cellpadding="5">
+<tr><td valign="top">1.<a name="1" href="javascript:history.go(-1);">обратно</a></td><td>D. P. Bovet, M. Cesati, Understanding the Linux Kernel, 3rd Edition, O'Reilly, 2005</td></tr>
+<tr><td valign="top">2.<a name="2" href="javascript:history.go(-1);">обратно</a></td><td>W. R. Stevens, S. A. Rago, Advanced Programming in the UNIX&reg; Environment: Second Edition, Addison Wesley Professional, 2005</td></tr>
+<tr><td valign="top">3.<a name="3" href="javascript:history.go(-1);">обратно</a></td><td>Стивенс У., UNIX: Взаимодействие процессов. - СПб.: Питер, 2003</td></tr>
+</table>
+
+<p><a href="linapi2.tar.gz" target="_blank"><b><i>Исходники программы</i></b></a>
+</div>
+
+</div>
+
+
+<center><table><tr><td><a href=http://vip.gfi.ru/?source=banner:cit_vip rel=nofollow target=_blank><img src=/a/gfi_110x52.png width=110 height=52 border=0></a><td><a href=http://vip.gfi.ru/?source=banner:cit_vip rel=nofollow target=_blank style=font-size:15px;font-family:arial,sans-serif;font-weight:bold;text-decoration:none;color:black><nobr>Зарегистрируйте номер 007-101-303</nobr><br><nobr>на сайте VIP.GFI.RU и получите</nobr><br><nobr>наши продукты <span style=font-size:20px;color:red>БЕСПЛАТНО</span></nobr></a></table>
+</center>
+
+<center>
+
+
+</center>
+
+</td>
+
+
+<td>
+
+<table cellspacing=0 cellpadding=0 border=0 width="100%" align=right><tr>
+<td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0></td>
+<td bgcolor=#daecd7><img src=/pictures/1x1.gif width=2 height=1 border=0></td>
+<td>
+
+<table cellpadding=0 cellspacing=0 border=0>
+
+<tr><td align="center"><!--  AdRiver code START. Type:240x400 Site: citforum PZ: 0 BN: 1 -->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write(
+'<iframe src="http://ad.adriver.ru/cgi-bin/erle.cgi?'
++ 'sid=137295&bn=1&target=blank&bt=22&pz=0&rnd=' + RndNum4NoCash + '&tail256=' + ar_Tail
++ '" frameborder=0 vspace=0 hspace=0 width=240 height=400 marginwidth=0'
++ ' marginheight=0 scrolling=no></iframe>');
+//--></script>
+<noscript>
+<a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=137295&bn=1&bt=22&pz=0&rnd=1132854728" target=_blank>
+<img src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=137295&bn=1&bt=22&pz=0&rnd=1132854728" alt="-AdRiver-" border=0 width=240 height=400></a>
+</noscript>
+
+<!--  AdRiver code END  --></td></tr>
+
+
+
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr>
+<tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 border=0 alt=""></td></tr>
+<tr><td bgcolor=#ffffff>
+<font size=2>
+<p><b>Новости мира IT:</b>
+<ul class=column>
+<!--<b><a target=_blank href=http://citcity.ru/20070/>4&#x2013;5 декабря пройдёт &#xab;Платформа 2009&#xbb;</a></b>
+<hr>-->
+
+<li>09.04 - <a href=http://citforum.ru/news/31859/>Adobe представила Lightroom для iPad </a><li>09.04 - <a href=http://citforum.ru/news/31858/>AMD представила Radeon R9 295X2 &#x2014; самый быстрый в мире ускоритель </a><li>09.04 - <a href=http://citforum.ru/news/31857/>Проект Mozilla представил инструментарий для изучения энергопотребления мобильных устройств</a><li>09.04 - <a href=http://citforum.ru/news/31856/>В OpenSSL обнаружена критическая уязвимость, которая может привести к утечке закрытых ключей</a><li>09.04 - <a href=http://citforum.ru/news/31855/>Microsoft открыла новый технологический центр в Москве за $15 млн</a><li>08.04 - <a href=http://citforum.ru/news/31854/>Компания Oracle наметила выпуск Solaris 12 на 2016 год</a><li>08.04 - <a href=http://citforum.ru/news/31853/>Microsoft планирует интегрировать WP-смартфоны с автомобилем</a><li>08.04 - <a href=http://citforum.ru/news/31852/>NASA планирует опубликовать каталог с кодом более тысячи своих проектов</a><li>08.04 - <a href=http://citforum.ru/news/31851/>Инициативы по миграции пользователей Windows XP на Chrome OS</a><li>08.04 - <a href=http://citforum.ru/news/31850/>Microsoft выделит МГУ $1 млн на исследования в сфере big data</a><li>08.04 - <a href=http://citforum.ru/news/31849/>Microsoft анонсировала &#xab;конструктор&#xbb; приложений Windows App Studio</a><li>07.04 - <a href=http://citforum.ru/news/31847/>Рунет отмечает 20-летний юбилей</a><li>07.04 - <a href=http://citforum.ru/news/31848/>"Яндекс" продал пакет акций в Facebook стоимостью 8,1 млн долларов</a><li>07.04 - <a href=http://citforum.ru/news/31846/>Стартует домен .ДЕТИ</a><li>07.04 - <a href=http://citforum.ru/news/31844/>В России 95% продаваемых LTE-телефонов поддерживают российские сети 4G</a><li>07.04 - <a href=http://citforum.ru/news/31843/>Быстрый набор в Windows Phone 8.1 будет поддерживать русский язык</a><li>07.04 - <a href=http://citforum.ru/news/31842/>ESET будет поддерживать антивирусные решения для Windows XP до 2017 г</a><li>07.04 - <a href=http://citforum.ru/news/31841/>Электронный паспорт привяжут к национальной платежной системе</a><li>07.04 - <a href=http://citforum.ru/news/31845/>Microsoft выпустит 8 апреля обновление ОС Windows 8.1</a><li>04.04 - <a href=http://citforum.ru/news/31840/>Amazon представила потоковую приставку Fire TV на базе Android </a>
+
+</ul>
+<p><a target=_blank href=http://citforum.ru/news/><b>Архив новостей</b></a>
+</font>
+<p align=right><a href=http://citforum.ru/news/rss/news.xml><img src=/pictures/xml_rss.gif border=0 width=36 height=14></a>
+</td></tr>
+
+
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr>
+<tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 border=0 alt=""></td></tr>
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr>
+<tr><td style="padding-left: 5px; min-width: 240px"><p><b>Последние комментарии:</b>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31855/#comments>Microsoft открыла новый технологический центр в Москве за $15 млн</a>&nbsp;(1)<br>
+		<div class=comments_menu_date> 9 Апрель, 11:00		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31845/#comments>Microsoft выпустит 8 апреля обновление ОС Windows 8.1</a>&nbsp;(3)<br>
+		<div class=comments_menu_date> 9 Апрель, 00:35		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31840/#comments>Amazon представила потоковую приставку Fire TV на базе Android </a>&nbsp;(1)<br>
+		<div class=comments_menu_date> 8 Апрель, 17:12		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31849/#comments>Microsoft анонсировала &#xab;конструктор&#xbb; приложений Windows App Studio</a>&nbsp;(5)<br>
+		<div class=comments_menu_date> 8 Апрель, 14:26		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31853/#comments>Microsoft планирует интегрировать WP-смартфоны с автомобилем</a>&nbsp;(4)<br>
+		<div class=comments_menu_date> 8 Апрель, 14:06		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31842/#comments>ESET будет поддерживать антивирусные решения для Windows XP до 2017 г</a>&nbsp;(1)<br>
+		<div class=comments_menu_date> 8 Апрель, 13:50		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31841/#comments>Электронный паспорт привяжут к национальной платежной системе</a>&nbsp;(1)<br>
+		<div class=comments_menu_date> 8 Апрель, 13:49		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31850/#comments>Microsoft выделит МГУ $1 млн на исследования в сфере big data</a>&nbsp;(2)<br>
+		<div class=comments_menu_date> 8 Апрель, 13:45		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31832/#comments>Представлен проект ReactOS Community Edition</a>&nbsp;(3)<br>
+		<div class=comments_menu_date> 7 Апрель, 23:00		</div>
+	</div>	<div class=comments_menu>
+		<a href=http://citforum.ru/news/31843/#comments>Быстрый набор в Windows Phone 8.1 будет поддерживать русский язык</a>&nbsp;(1)<br>
+		<div class=comments_menu_date> 7 Апрель, 13:45		</div>
+	</div></td></tr>
+
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr>
+<tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 border=0 alt=""></td></tr>
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr>
+<tr><td><div id="cse" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'ru'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('018117224161927867877:xbac02ystjy');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+</td></tr>
+
+<tr><td align="center"><!-- Soloway 240x400 code START-->
+<script language="javascript" type="text/javascript"><!--
+if(typeof(ar_cn)=="undefined") var ar_cn=1;
+var ar_Tail=document.referrer ? escape(document.referrer) : 'unknown';
+var ar_link="http://ad.adriver.ru/cgi-bin/erle.cgi?sid=126751&bt=49&target=blank&tail256=" + ar_Tail;
+document.write('<div style="visibility:hidden;height:0px;"><iframe id="ar_container_'+ar_cn+'" width=1 height=1 marginwidth=0 marginheight=0 scrolling=no frameborder=0><\/iframe><\/div><div id="ad_ph_'+ar_cn+'"><\/div>');
+function ar_getDoc(t,n,l){var doc;if(t<100){if(document.all && !window.opera){doc = window.frames['ar_container_'+n].document}
+else if(document.getElementById){doc=document.getElementById('ar_container_'+n).contentDocument}
+if(!doc){setTimeout('ar_getDoc('+(++t)+','+n+',"'+l+'")', 100)}else {var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+doc.write ('<sc'+'ript language="JavaScript" type="text/javascript">var ar_bnum='+n+';<\/sc'+'ript>');
+doc.write ('<sc'+'ript language="JavaScript" type="text/javascript" src="'+l+'&rnd='+RndNum4NoCash+'"><\/sc'+'ript>');}}}
+(function(num,link){function addEvent(e,t,f){if(e.addEventListener)e.addEventListener(t,f,false);else if(e.attachEvent)e.attachEvent('on'+t,f)}
+function removeEvent(e,t,f){if(e.removeEventListener)e.removeEventListener(t,f,false);else if(e.detachEvent)e.detachEvent('on'+t,f)}
+var BannerLoader={top:0,height:400,cm:document.compatMode=="CSS1Compat",
+scroll:function(){var ch=self.innerHeight||this.cm&&document.documentElement.clientHeight||document.body.clientHeight;
+var st=self.pageYOffset||this.cm&&document.documentElement.scrollTop||document.body.scrollTop;
+var sh=self.scrollHeight||this.cm&&document.documentElement.scrollHeight||document.body.scrollHeight;
+if((st-this.top<=this.height*0.2&&st+ch-this.top>=this.height*0.8)||(sh-this.top<=this.height*0.8&&(sh-st-ch<1||sh<ch))){
+removeEvent(window,'scroll',this.sfunc);ar_getDoc(0,num,link)}},
+sfunc: function(){BannerLoader.scroll()},init:function(){var t=this,obj=document.getElementById('ad_ph_'+num);
+if(obj){while(obj.offsetParent){t.top += obj.offsetTop; obj = obj.offsetParent}
+addEvent(window,'scroll',this.sfunc);t.scroll()}}};addEvent(window, 'load', function(){BannerLoader.init()})})(ar_cn++,ar_link);
+//--></script>
+<!-- Soloway 240x400 code END -->
+</td></tr>
+<tr><td style="padding-left:5px;">
+
+
+
+
+
+</td></tr>
+
+</table>
+
+</td>
+<td bgcolor=#daecd7><img src=/pictures/1x1.gif width=2 height=1 border=0></td>
+<td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0></td>
+</tr></table>
+
+</td>
+ <!--no_right-->
+
+</tr>
+</table>
+</td>
+
+</tr></table>
+
+<p>
+<table   cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=931 height=1 alt="" border=0></td></tr>
+<tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 alt="" border=0></td></tr>
+<tr><td bgcolor=#008080>
+
+<table cellspacing=1 cellpadding=3 border=0 width=100%>
+<tr>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/consulting/>IT-консалтинг</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/SE/>Software Engineering</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/programming/>Программирование</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/database/>СУБД</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/security/>Безопасность</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/internet/>Internet</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/nets/>Сети</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/operating_systems/>Операционные системы</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/hardware/>Hardware</a></font></td>
+<!--
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/faq/>FAQ (ЧаВО)</a></font></td>
+<td bgcolor=#F4F9F3 align=center><font size=-1><a class=head href=/howto/>HOWTO</a></font></td>
+--> 
+</tr>
+</table>
+
+</td></tr>
+</table>
+
+<p>
+
+<table width=100%>
+<tr><td>
+<a href=/about/><font size=2>Информация для рекламодателей</font></a> 
+</td><td><font size=2>PR-акции, размещение рекламы &mdash; <a href="mailto:adv@citforum.ru">adv@citforum.ru</a>,
+<br>тел. +7 495 6608306, ICQ 232284597</font>
+</td><td align=right><font size=2>Пресс-релизы &mdash; <a href=mailto:pr@citforum.ru>pr@citforum.ru</a></font>
+</td></tr></table>
+
+
+<table cellspacing=0 cellpadding=0 border=0 width="100%"><tr><td><img src=/pictures/1x1.gif width=1 height=5 border=0 alt=""></td></tr>
+<tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr>
+<tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 border=0 alt=""></td></tr></table>
+
+<table cellspacing=0 cellpadding=4 border=0 width=100%><tr>
+<td><font size=2>
+<a href=http://www.citforum.ru/feedback.php?page=/programming/unix/ipc_intro/&server=citforum.ru>Послать комментарий</a><br>
+<a href=/how.shtml>Информация для авторов</a>
+
+</font></td>
+
+<td><a href=http://top100.rambler.ru/cgi-bin/stats_top100.cgi?13078><img src="/pictures/logos/banner-88x31-rambler-darkblue2.gif" width=88 height=31 border=0 alt="Rambler's Top100"></a></td>
+<td><!--TopList LOGO--><a target=_top href="http://top.list.ru/jump?from=26978"><img src="http://top.list.ru/counter?id=26978;t=54;l=1" border=0 height=31 width=88 alt="TopList"></a><!--TopList LOGO--></td>
+<td>
+<!--LiveInternet logo--><a href="http://www.liveinternet.ru/click" target=_blank><img
+src="http://counter.yadro.ru/logo?12.6" border=0
+alt="liveinternet.ru: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня"
+width=88 height=31></a><!--/LiveInternet-->
+</td>
+
+<td align=right valign=bottom><FONT SIZE=1 face="Arial, sans-serif">This Web server launched on February 24, 1997<br>
+Copyright &copy; 1997-2000 CIT, &copy; 2001-2009 <a href=/info.shtml>CIT Forum</a></font></td>
+</tr></table>
+
+<table cellspacing=0 cellpadding=0 border=0 width=100%><tr><td bgcolor=#daecd7><img src=/pictures/1x1.gif width=1 height=3 border=0 alt=""></td></tr><tr><td bgcolor=#008080><img src=/pictures/1x1.gif width=1 height=1 border=0 alt=""></td></tr></table>
+<table cellspacing=0 cellpadding=0 border=0 width=100%><tr><td align=center><font size=1 face="Arial, sans-serif"><b>Внимание!</b> Любой из материалов, опубликованных на этом сервере, не может быть  воспроизведен в какой бы то ни было форме и какими бы то ни было средствами без письменного разрешения владельцев авторских прав. <a href=/copyright.shtml>Подробнее...</a></td></tr></table>
+
+
+<hr>
+<style><!--
+.d {color:grey;font-size:10px}
+.d a {text-decoration:none}
+--></style>
+<table class=d width=100%>
+<tr><td>
+
+Мы поставляем <a href="http://www.auto-china.ru/">запчасти chery</a> прямо из Китая.<br><br>
+
+
+
+</td></tr>
+</table>
+
+
+
+</table></center>
+
+
+<script type="text/javascript"><!--
+var _ga1_channel='9117';
+(function() {
+    var s = document.createElement('script'); s.type = 'text/javascript'; s.charset = 'utf-8'; s.async = true; s.src = 'http://files.goodadvert.ru/ga_1.js';
+    var o = document.getElementsByTagName('script')[0]; o.parentNode.insertBefore(s, o);
+})();
+// -->
+</script>
+
+<!-- GoodADVERT (SMART SCREEN) for http://citforum.ru/ -->
+<script type="text/javascript"><!--
+var _ga3_channel='9114';
+(function() {
+    var s = document.createElement('script'); s.type = 'text/javascript'; s.charset = 'utf-8'; s.async = true; s.src = 'http://files.goodadvert.ru/ga_3.js';
+    var o = document.getElementsByTagName('script')[0]; o.parentNode.insertBefore(s, o);
+})();
+// -->
+</script>
+<!-- GoodADVERT -->
+
+<!-- AdGravity Javascript code START-->
+<script language="javascript" type="text/javascript"><!--
+var RndNum4NoCash = Math.round(Math.random() * 1000000000);
+var ar_Tail='unknown'; if (document.referrer) ar_Tail = escape(document.referrer);
+document.write('<sc' + 'ript language="JavaScript" src="http://ad.adriver.ru/cgi-bin/erle.cgi?sid=126751&bt=16&target=blank&tail256="' + ar_Tail + '"></sc' + 'ript>');
+//--></script>
+<!-- AdGravity Javascript code END -->
+
+
+
+</body>
+</html>
