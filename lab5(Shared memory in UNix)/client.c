@@ -8,9 +8,10 @@
 
 int main()
 {
+  const int sharedMemorySize = 4096;
   int sharedMemoryDescriptor;
   char filename[] = "server.c";
-  key_t clientKey;     /* IPC ключ */
+  key_t clientKey;
   int i = 0;
   char* pSharedMemory;
 
@@ -20,21 +21,21 @@ int main()
       exit(-1);
   }
 
-  if((sharedMemoryDescriptor = shmget(clientKey, 4096, 0666)) < 0)
+  if((sharedMemoryDescriptor = shmget(clientKey, sharedMemorySize, 0666)) < 0)
   {
       if(errno != EEXIST)
       {
           printf("Error! Cannot create shared memory\n");
           exit(-1);
       }
-      else if((sharedMemoryDescriptor = shmget(clientKey, 4096, 0)) < 0)
+      else if((sharedMemoryDescriptor = shmget(clientKey, sharedMemorySize, 0)) < 0)
       {
           printf("Error! Cannot find shared memory\n");
           exit(-1);
       }
   }
 
-  if((pSharedMemory = (char *)shmat(sharedMemoryDescriptor, (char*)NULL, 0)) == (char *)(-1))
+  if((pSharedMemory = shmat(sharedMemoryDescriptor, NULL, 0)) == -1)
   {
       printf("Error! Cannot shared memory\n");
       exit(-1);
@@ -58,14 +59,14 @@ int main()
     sleep(5);
   }
 
-  for (i = 0; i < 9; i++)
-  {
-    printf("%c ", pSharedMemory[i + 4]);
-  }
+//   for (i = 0; i < 9; i++)
+//   {
+//     printf("%c ", pSharedMemory[i + 4]);
+//   }
 
-  pSharedMemory[0] = (char)(-1);
+  pSharedMemory[0] = -1;
 
-  if(shmdt(pSharedMemory) < 0)
+  if(shmdt(pSharedMemory)  == -1)
   {
       printf("Can't detach shared memory\n");
       exit(-1);

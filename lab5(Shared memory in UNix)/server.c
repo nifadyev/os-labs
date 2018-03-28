@@ -5,8 +5,6 @@
 #include <errno.h>
 #include <stdlib.h>
 
-//System V IPC (IPC - сокращение от InterProcess Communications).
-//В группу System V IPC входят: очереди сообщений, разделяемая память и семафоры.
 int main()
 {
     const int sharedMemorySize = 4096;
@@ -22,7 +20,7 @@ int main()
         exit(-1);
     }
 
-    if(sharedMemoryDescriptor = shmget(serverKey, sharedMemorySize, IPC_CREAT|IPC_EXCL|0666) < 0) // 0666 - разрешено все всем
+    if(sharedMemoryDescriptor = shmget(serverKey, sharedMemorySize, IPC_CREAT|IPC_EXCL|0666) < 0)
     {
         if(errno != EEXIST)
         {
@@ -36,20 +34,28 @@ int main()
         }
     }
 
-    if((pSharedMemory = (char *)shmat(sharedMemoryDescriptor, NULL, 0)) == (char *)(-1))
+    if((pSharedMemory = shmat(sharedMemoryDescriptor, NULL, 0)) == -1)
     {
         printf("Error! Cannot attach shared memory\n");
         exit(-1);
     }
 
-    pSharedMemory[0] = (char)0;
+    pSharedMemory[0] = 0;
     while (1)
     {
       if ((int)pSharedMemory[0] == -1)
       {
         printf("Server has been shut down\n");
-        shmdt(pSharedMemory);
-        shmctl(sharedMemoryDescriptor, IPC_RMID, NULL);
+        if(shmdt(pSharedMemory)  == -1)
+        {
+            printf("Can't detach shared memory\n");
+            exit(-1);
+        }
+        if(shmctl(sharedMemoryDescriptor, IPC_RMID, NULL) == -1)
+        {
+            printf("Can't detach shared memory\n");
+            exit(-1);
+        }
         exit(1);
       }
 
