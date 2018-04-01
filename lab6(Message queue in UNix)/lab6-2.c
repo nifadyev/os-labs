@@ -1,7 +1,7 @@
 #include <sys/types.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
-#include <time.h>
+//#include <time.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -54,7 +54,7 @@ int main()
 
     //TODO: fix msgrcv returns 0 or big number
     if((length = msgrcv(messageQueueDescriptor, 
-    (struct length_msg_buffer *)&rand_length, maxLength, 0, MSG_NOERROR)) < 0)
+    (struct length_msg_buffer *)&rand_length, 4, 1, 0)) < 0)
     {
             printf("Cannot receive length from queue\n");
             msgctl(messageQueueDescriptor, IPC_RMID,
@@ -63,9 +63,7 @@ int main()
     }
     else
     {
-        //maxLength = rand_length.length;
-        //rand_length.length = length;
-        //rand_length.messageType = 1;
+        maxLength = rand_length.length;
         printf("%d #%ld\n", rand_length.length, rand_length.messageType);
         printf("rand_length.length: %d\nmaxLength: %d\nlength: %d\n", rand_length.length, maxLength, length);
         //rand_length.messageType = 254;

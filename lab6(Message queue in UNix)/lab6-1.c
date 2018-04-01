@@ -38,8 +38,18 @@ int main()
 
     if((messageQueueDescriptor = msgget(key, IPC_CREAT | 0666)) == -1)
     {
-        printf("Error! Cannot get message queue descriptor\n");
-        exit(EXIT_FAILURE);
+        if(errno != EEXIST)
+        {
+            printf("Error! Cannot create shared memory\n");
+            exit(-1);
+        }
+        else if((messageQueueDescriptor = msgget(key, 0)) < 0)
+        {
+            printf("Error! Cannot find shared memory\n");
+            exit(-1);
+        }
+        // printf("Error! Cannot get message queue descriptor\n");
+        // exit(EXIT_FAILURE);
     }
 
     srand(time(NULL));
