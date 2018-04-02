@@ -84,20 +84,7 @@ int main()
     sent = 0;
     for (i = 0; i < maxLength; i++)
     {
-        // if (strlen(rand_string.message) == maxLength)
-        // {
-        //     rand_string.messageType = 255;
-        //     send = msgsnd(messageQueueDescriptor, /*(struct string_msg_buffer *)*/ &rand_string, 0, 0);
-        //     if (send < 0)
-        //     {
-        //         printf("Can\'t send message to queue\n");
-        //         msgctl(messageQueueDescriptor, IPC_RMID,
-        //                (struct msqid_ds *)NULL);
-        //         exit(EXIT_FAILURE);
-        //     }
-        //     printf("Stopping\n");
-        //     break;
-        // }
+        // Sending message
         if (sent == 0)
         {
             printf("Current length: %d\n", receive);
@@ -121,7 +108,7 @@ int main()
             printf("Step #%d: Was sent: %s\n", i, rand_string.message);
 
             sent = 1;
-            continue;
+            //continue;
         }
         else
         {
@@ -137,7 +124,7 @@ int main()
                 printf("Step #%d: Was recieved: %s\n", i, rand_string.message);
                 if (strlen(rand_string.message) == maxLength)
                 {
-                    printf("Well done\n");
+                    printf("WELL DONE. STOPPING WHILE RECEIVING\n");
                     rand_string.messageType = 255;
                     send = msgsnd(messageQueueDescriptor, &rand_string, 0, 0);
                     if (send < 0)
@@ -168,8 +155,12 @@ int main()
 
         if (strlen(rand_string.message) == maxLength)
         {
-            printf("Well done here\n");
-            rand_string.messageType = 255;
+            printf("WELL DONE. STOPPING AFTER SENDING AND RECEIVING\n");
+
+            // Sending empty char message as a stop signal for prog2
+            rand_string.messageType = 2;
+            strcpy(rand_string.message, "\0");
+
             send = msgsnd(messageQueueDescriptor, &rand_string, 0, 0);
             if (send < 0)
             {
@@ -182,7 +173,9 @@ int main()
         }
     }
 
-    rand_string.messageType = 255;
+    rand_string.messageType = SEND_RAND_STRING;
+    strcpy(rand_string.message, "\0");
+
     send = msgsnd(messageQueueDescriptor, &rand_string, 0, 0);
     if (send < 0)
     {
@@ -192,16 +185,16 @@ int main()
         exit(-1);
     }
 
-    rand_length.messageType = 255;
-    send = msgsnd(messageQueueDescriptor, &rand_length, 0, 0);
-    if (send < 0)
-    {
-        printf("Can\'t send message to queue\n");
-        msgctl(messageQueueDescriptor, IPC_RMID,
-               (struct msqid_ds *)NULL);
-        exit(-1);
-    }
-    printf("Stopping at the end\n");
+    // rand_length.messageType = 255;
+    // send = msgsnd(messageQueueDescriptor, &rand_length, 0, 0);
+    // if (send < 0)
+    // {
+    //     printf("Can\'t send message to queue\n");
+    //     msgctl(messageQueueDescriptor, IPC_RMID,
+    //            (struct msqid_ds *)NULL);
+    //     exit(-1);
+    // }
+    printf("STOPPING AT THE END. PROBABLY SMTH WENT WRONG\n");
 
     return 0;
 }
