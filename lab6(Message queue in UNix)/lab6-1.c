@@ -14,36 +14,38 @@ int main()
 {
     key_t key;
     char *filename = "lab6-1.c";
+    char string[40] = {0};
     int messageQueueDescriptor;
     int i, maxLength;
+    int sent;
+    int send = 0, receive = 0;
 
     struct length_msg_buffer
-    { 
+    {
         long messageType;
-        int length; 
+        int length;
     } rand_length;
 
     struct string_msg_buffer
-    { 
+    {
         long messageType;
-        char message[40]; 
+        char message[40];
     } rand_string;
-    
 
-    if((key = ftok(filename, 0)) < 0)
+    if ((key = ftok(filename, 0)) < 0)
     {
         printf("Error! Cannot generate key\n");
         exit(EXIT_FAILURE);
     }
 
-    if((messageQueueDescriptor = msgget(key, IPC_CREAT | 0666)) == -1)
+    if ((messageQueueDescriptor = msgget(key, 0)) == -1)
     {
-        if(errno != EEXIST)
+        if (errno != EEXIST)
         {
             printf("Error! Cannot create shared memory\n");
             exit(-1);
         }
-        else if((messageQueueDescriptor = msgget(key, 0)) < 0)
+        else if ((messageQueueDescriptor = msgget(key, 0)) < 0)
         {
             printf("Error! Cannot find shared memory\n");
             exit(-1);
@@ -57,71 +59,149 @@ int main()
     rand_length.messageType = SEND_LENGTH;
     rand_length.length = maxLength;
 
-    if(msgsnd(messageQueueDescriptor, 
-    (struct length_msg_buffer *)&rand_length, 4, 0) < 0)
+    send = msgsnd(messageQueueDescriptor, &rand_length, sizeof(int), 0);
+    if (send < 0)
     {
         printf("Error! Cannot send length to second prog\n");
         msgctl(messageQueueDescriptor, IPC_RMID,
-         (struct msqid_ds *) NULL);
+               (struct msqid_ds *)NULL);
         exit(EXIT_FAILURE);
     }
     else
     {
-        printf("%d #%ld\n", rand_length.length, rand_length.messageType);
+        printf("Size: %d Message Type: %ld\n", rand_length.length, rand_length.messageType);
     }
 
-    i = 0;
-    if(msgrcv(messageQueueDescriptor, 
-    (struct length_msg_buffer *)&rand_length, 0, 0, 0) < 0)
+    receive = msgrcv(messageQueueDescriptor, &rand_length, 0, 1, 0);
+    if (receive < 0)
     {
-            printf("Cannot receive message from prog2\n");
-            msgctl(messageQueueDescriptor, IPC_RMID,
-            (struct msqid_ds *) NULL);
-            exit(EXIT_FAILURE);
-    }
-    // if(rand_length.messageType != 254)
-    // {
-    //     printf("Cannot get correct message from prog2\n");
-    //     msgctl(messageQueueDescriptor, IPC_RMID,
-    //         (struct msqid_ds *) NULL);
-    //     exit(EXIT_FAILURE);
-    // }
-    while(1)
-    {
-        if(strlen(rand_string.message) == maxLength)
-        {
-            break;
-        }
-        rand_string.messageType = SEND_RAND_STRING;
-        rand_string.message[i] = rand() % ('z' - 'a') + 'a';
-        rand_string.message[i + 1] = '\0';
-        
-        if(msgsnd(messageQueueDescriptor, 
-            (struct string_msg_buffer *)&rand_string, strlen(rand_string.message) + 1, 0) < 0)
-        {
-            printf("Error! Cannot send string to second prog\n");
-            msgctl(messageQueueDescriptor, IPC_RMID,
-                    (struct msqid_ds *) NULL);
-            exit(EXIT_FAILURE);
-        }
-        printf("Step #%d: Was sent: %s\n", i, rand_string.message);
-        i++;
+        printf("Cannot receive message from prog2\n");
+        msgctl(messageQueueDescriptor, IPC_RMID,
+               (struct msqid_ds *)NULL);
+        exit(EXIT_FAILURE);
     }
 
-    //if(msgrcv)
-    // if(msgctl(messageQueueDescriptor, IPC_RMID,
-    //      (struct msqid_ds *) NULL) < 0)
-    // {
-    //     printf("Error! Cannot delete message queue\n");
-    //     exit(EXIT_FAILURE);
-    // }
+    sent = 0;
+    for (i = 0; i < maxLength; i++)
+    {
+        // if (strlen(rand_string.message) == maxLength)
+        // {
+        //     rand_string.messageType = 255;
+        //     send = msgsnd(messageQueueDescriptor, /*(struct string_msg_buffer *)*/ &rand_string, 0, 0);
+        //     if (send < 0)
+        //     {
+        //         printf("Can\'t send message to queue\n");
+        //         msgctl(messageQueueDescriptor, IPC_RMID,
+        //                (struct msqid_ds *)NULL);
+        //         exit(EXIT_FAILURE);
+        //     }
+        //     printf("Stopping\n");
+        //     break;
+        // }
+        if (sent == 0)
+        {
+            printf("Current length: %d\n", receive);
+
+            rand_string.messageType = 2;
+            rand_string.message[i] = rand() % ('z' - 'a') + 'a';
+            rand_string.message[i + 1] = '\0';
+
+            printf("\t\t\tRandom letter in message: %c\n", rand_string.message[i]);
+            printf("\t\t\tCurrent message: %s\n", rand_string.message);
+            printf("\t\t\tCurrent message length: %ld\n", strlen(rand_string.message));
+
+            send = msgsnd(messageQueueDescriptor, &rand_string, strlen(rand_string.message) + 1, 0);
+            if (send < 0)
+            {
+                printf("Error! Cannot send string to second prog\n");
+                msgctl(messageQueueDescriptor, IPC_RMID,
+                       (struct msqid_ds *)NULL);
+                exit(EXIT_FAILURE);
+            }
+            printf("Step #%d: Was sent: %s\n", i, rand_string.message);
+
+            sent = 1;
+            continue;
+        }
+        else
+        {
+            receive = msgrcv(messageQueueDescriptor, &rand_string, maxLength + 1, 3, 0);
+            printf("Current length: %d\n", receive);
+
+            if (receive < 0)
+            {
+
+                printf("\t\t\tCurrent message: %s\n", rand_string.message);
+                printf("\t\t\tCurrent message length: %ld\n", strlen(rand_string.message));
+
+                printf("Step #%d: Was recieved: %s\n", i, rand_string.message);
+                if (strlen(rand_string.message) == maxLength)
+                {
+                    printf("Well done\n");
+                    rand_string.messageType = 255;
+                    send = msgsnd(messageQueueDescriptor, &rand_string, 0, 0);
+                    if (send < 0)
+                    {
+                        printf("Can\'t send message to queue\n");
+                        msgctl(messageQueueDescriptor, IPC_RMID,
+                               (struct msqid_ds *)NULL);
+                        exit(-1);
+                    }
+                    msgctl(messageQueueDescriptor, IPC_RMID,
+                           (struct msqid_ds *)NULL);
+                    exit(EXIT_SUCCESS);
+                }
+                printf("Cannot receive string from prog1\n");
+                msgctl(messageQueueDescriptor, IPC_RMID,
+                       (struct msqid_ds *)NULL);
+                exit(EXIT_FAILURE);
+            }
+            if (rand_string.messageType == 3)
+            {
+
+                printf("\t\t\tCurrent message: %s\n", rand_string.message);
+                printf("\t\t\tCurrent message length: %ld\n", strlen(rand_string.message));
+                printf("Step #%d: Was recieved: %s\n", i, rand_string.message);
+            }
+            sent = 0;
+        }
+
+        if (strlen(rand_string.message) == maxLength)
+        {
+            printf("Well done here\n");
+            rand_string.messageType = 255;
+            send = msgsnd(messageQueueDescriptor, &rand_string, 0, 0);
+            if (send < 0)
+            {
+                printf("Can\'t send message to queue\n");
+                msgctl(messageQueueDescriptor, IPC_RMID,
+                       (struct msqid_ds *)NULL);
+                exit(-1);
+            }
+            exit(EXIT_SUCCESS);
+        }
+    }
+
     rand_string.messageType = 255;
-    if (msgsnd(messageQueueDescriptor, (struct string_msg_buffer *) &rand_string, 0, 0) < 0){
+    send = msgsnd(messageQueueDescriptor, &rand_string, 0, 0);
+    if (send < 0)
+    {
         printf("Can\'t send message to queue\n");
-        msgctl(messageQueueDescriptor, IPC_RMID, 
-            (struct msqid_ds *) NULL);
+        msgctl(messageQueueDescriptor, IPC_RMID,
+               (struct msqid_ds *)NULL);
         exit(-1);
     }
+
+    rand_length.messageType = 255;
+    send = msgsnd(messageQueueDescriptor, &rand_length, 0, 0);
+    if (send < 0)
+    {
+        printf("Can\'t send message to queue\n");
+        msgctl(messageQueueDescriptor, IPC_RMID,
+               (struct msqid_ds *)NULL);
+        exit(-1);
+    }
+    printf("Stopping at the end\n");
 
     return 0;
 }
