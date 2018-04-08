@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1251">
+<TITLE>ftok</TITLE>
+</HEAD>
+<BODY BGCOLOR="#ffffff" topmargin="30" leftmargin="30">
+
+<H1 ALIGN="CENTER"><FONT FACE="Times New Roman">Функция для генерации ключа System V IPC</font></H1>
+<B><FONT FACE="Times New Roman" SIZE=5><P>Прототип функции</P></FONT>
+</B>
+<DIR><FONT COLOR="#008000"> 
+  <BLOCKQUOTE><b>#include &lt;sys/types.h&gt;<br>
+    #include &lt;sys/ipc.h&gt; </b></BLOCKQUOTE>
+  <BLOCKQUOTE><b>key_t ftok(char *pathname,  char proj);</b></BLOCKQUOTE>
+  </font></DIR>
+
+<B><FONT FACE="Times New Roman" SIZE=5><P>Описание функции</P></font></B>
+<DIR><FONT FACE="Times New Roman" SIZE=5><B> </b></font> 
+  <BLOCKQUOTE><FONT FACE="Times New Roman">Функция <B><FONT COLOR="#008000">ftok</font></B> 
+    служит для преобразования </FONT><FONT FACE="Times New Roman">имени существующего 
+    файла и небольшого целого числа, например порядкового номера экземпляра средств 
+    связи, в ключ System V IPC.<br>
+    <br>
+    Параметр <b><font color="#008000">pathname</font></b> должен являться указателем 
+    на имя существующего файла, доступного для процесса, вызывающего функцию. 
+    <br>
+    Параметр <b><font color="#008000">proj </font></b>- это небольшое целое число, 
+    характеризующее экземпляр средства связи. <br>
+    <br>
+    В случае невозможности генерации ключа функция возвращает отрицательное значение, 
+    в противном случае она возвращает значение сгенерированного ключа. Тип данных 
+    <b> <font color="#008000">key_t</font></b> обычно представляет собой 32-х 
+    битовое целое.</FONT></BLOCKQUOTE>
+</DIR>
+</BODY>
+</HTML>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38951496-1']);
+  _gaq.push(['_trackPageview']);
+  // st1 Friday, 24-Apr-2015 09:08:40 MSK
+  // st2 85.143.3.45
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
