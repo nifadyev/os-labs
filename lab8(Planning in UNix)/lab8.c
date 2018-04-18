@@ -4,46 +4,58 @@
 typedef struct
 {
     int stringLength;
-    char *string;
+    char *data;
     int currentPosition;
     int isFinished;
-} para;
+} Thread;
 
-int f(para *t, int num, int col)
+// String proccessing or time interval proccessing
+int f(Thread *threads, int timeInterval, int threadNumber)
 {
-    int i, b = 0, count = 0;
-    printf("\n%d", num + 1);
+    int i, finishedThreads = 0;
+    int b = 0;        // flag, which tells whether we visited this row/column or not
+    int isActive = 0; // does thread still running?
+    printf("\n%d", timeInterval + 1);
 
-    for (i = 0; i < col; i++)
+    for (i = 0; i < threadNumber; i++)
     {
-        if (t[i].currentPosition >= t[i].stringLength)
+        if (threads[i].currentPosition >= threads[i].stringLength)
         {
             printf("\tx");
-            t[i].isFinished = 1;
-            count += t[i].isFinished;
+            threads[i].isFinished = 1;
+            finishedThreads++;
+
             continue;
         }
 
-        if (t[i].string[t[i].currentPosition] == '0' && b == 0)
+        if (threads[i].data[threads[i].currentPosition] == '0' && b == 0)
         {
+            //printf("\t0HERE");
             printf("\t0");
+            isActive = 1;
             b = 1;
-            t[i].currentPosition++;
+            threads[i].currentPosition++;
         }
 
-        else if (t[i].string[t[i].currentPosition] == '0' && b != 0)
+        else if (threads[i].data[threads[i].currentPosition] == '0' /*  && b != 0 */)
         {
+            //printf("\t.THERE");
             printf("\t.");
         }
-        else if (t[i].string[t[i].currentPosition] == '-')
+
+        else if (threads[i].data[threads[i].currentPosition] == '-')
         {
+            isActive = 0;
             printf("\t|");
-            t[i].currentPosition++;
+            threads[i].currentPosition++;
         }
-        count += t[i].isFinished;
+        //finishedThreads += threads[i].isFinished;
     }
-    if (count == col)
+
+    if (finishedThreads == threadNumber)
+    {
         return 0;
+    }
 
     return 1;
 }
@@ -54,7 +66,7 @@ int main()
     int i;
     char inputFile[] = "input.txt";
     char **strings;
-    para *t;
+    Thread *threads;
     FILE *file;
     if ((file = fopen(inputFile, "r")) == NULL)
     {
@@ -79,21 +91,21 @@ int main()
     {
         fscanf(file, "%s\n", strings[i]);
     }
-    t = (para *)malloc(threadNumber * sizeof(para));
+    threads = (Thread *)malloc(threadNumber * sizeof(Thread));
+
     for (i = 0; i < threadNumber; i++)
     {
-        t[i].stringLength = atoi(strings[i * 2]);
-        t[i].string = strings[i * 2 + 1];
-        t[i].currentPosition = 0;
-        t[i].isFinished = 0;
+        threads[i].stringLength = atoi(strings[i * 2]);
+        threads[i].data = strings[i * 2 + 1];
+        threads[i].currentPosition = 0;
+        threads[i].isFinished = 0;
     }
-    //	for(i=0;i<threadNumber;i++)
-    // {
-    //	printf("%d\n",t[i].stringLength);
-    //	printf("%s\n",t[i].string);
-    // }
-    i = 0;
-    while (f(t, i++, threadNumber) && i < 20)
+
+    for (i = 0; f(threads, i, threadNumber) /*  && i < 20 */; i++)
+        // {
+        //     printf("\n%d iteration\n", i);
+        // }
         ;
+
     return 0;
 }
