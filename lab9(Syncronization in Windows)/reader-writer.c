@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <conio.h>
+#include <time.h>
 
 int Data = 0;
-//int WriteCount = 0;
 int ReadCount = 0;
-CRITICAL_SECTION cs;
-HANDLE Access, RC;
-HANDLE readingSemaphore, semaphore;
-
+HANDLE Access; // Exclusive data access for writing
+HANDLE RC; // Data access for reading
 
 DWORD WINAPI Reader(LPVOID lpParam);
 DWORD WINAPI Writer(LPVOID lpParam);
@@ -16,43 +14,38 @@ DWORD WINAPI Writer(LPVOID lpParam);
 int main()
 {
     HANDLE threads[10];
-    //InitializeCriticalSection(&cs);
     int i;
-    //int numbers[5] = { 1, 2, 3, 4, 5 };
-    //readingSemaphore = CreateSemaphore(NULL, 0, 100, NULL);
-    semaphore = CreateSemaphore(NULL, 0, 100, NULL);
-    Access = CreateSemaphore(NULL, 1, 100, NULL);
-    RC = CreateSemaphore(NULL, 1, 100, NULL);
 
-    //ReleaseSemaphore(writingSemaphore, 1, NULL);
+    srand(time(NULL));
+    Access = CreateSemaphore(NULL, 1, 100, (LPCSTR)"Access");
+    RC = CreateSemaphore(NULL, 1, 100, (LPCSTR)"RC");
+
     for (i = 0; i < 5; i++)
     {
-        threads[i] = CreateThread(NULL, 0, &Writer, NULL, 0/*&numbers[i]*/, NULL);
-        threads[i + 5] = CreateThread(NULL, 0, &Reader, NULL,0/* &numbers[i]*/, NULL);
+        threads[i] = CreateThread(NULL, 0, Writer, NULL, 0, NULL);
+        threads[i + 5] = CreateThread(NULL, 0, Reader, NULL, 0, NULL);
     }
 
     WaitForMultipleObjects(10, threads, TRUE, INFINITE);
 
-    CloseHandle(readingSemaphore);
-    CloseHandle(semaphore);
-    CloseHandle(Access);
-    CloseHandle(RC);
+
     for (i = 0; i < 10; i++)
     {
         CloseHandle(threads[i]);
     }
-    //DeleteCriticalSection(&cs);
+    CloseHandle(Access);
+    CloseHandle(RC);
 
     return 0;
 }
 
 DWORD WINAPI Reader(LPVOID lpParam)
 {
-    int i = 0;
-    //int n = *(int*)lpParam;
+    int i;
 
-    while (5 > i++) {
-        // P(S); V(S);
+    for(i = 0; i < 5; i++)
+    {
+        Sleep(rand() % 1100 + 1000);
         WaitForSingleObject(RC, INFINITE);
         ReadCount++;
 
@@ -61,24 +54,20 @@ DWORD WINAPI Reader(LPVOID lpParam)
             WaitForSingleObject(Access, INFINITE);
         }
         ReleaseSemaphore(RC, 1, NULL);
-        Sleep(rand() % 1000 + 1000);
-        //EnterCriticalSection(&cs);
+        
 
-        printf("Reader N %d starts writing. ReadCount=%d, Data=%d\n", 1, ReadCount, Data);
-        Sleep(3);
+        printf("Reader #%d starts reading. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
+        Sleep(300);
 
-        printf("Reader N %d ends writing. ReadCount=%d, Data=%d\n", 1, ReadCount, Data);
-
-        //OpenSemaphore()
-        WaitForSingleObject(RC, NULL);
+        printf("Reader #%d ends reading. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
+        WaitForSingleObject(RC, INFINITE);
         ReadCount--;
+
         if (ReadCount == 0)
         {
             ReleaseSemaphore(Access, 1, NULL);
         }
         ReleaseSemaphore(RC, 1, NULL);
-        //LeaveCriticalSection(&cs);
-        //ReleaseSemaphore(readingSemaphore, 1, NULL);
     }
 
     ExitThread(EXIT_SUCCESS);
@@ -86,22 +75,16 @@ DWORD WINAPI Reader(LPVOID lpParam)
 
 DWORD WINAPI Writer(LPVOID lpParam)
 {
-    int i = 0;
-    //int n = *(int*)lpParam;
-    while (5 > i++) 
-    {
-        //P(S); // Резервирование
-        WaitForSingleObject(Access, NULL);
-        Sleep(rand() % 1000 + 1000);
-        
-        //EnterCriticalSection(&cs);
-        printf("Writer N %d starts writing. ReadCount=%d, Data=%d\n", 1, ReadCount, Data);
-        Sleep(3);
-        printf("Writer N %d ends writing. ReadCount=%d, Data=%d\n", 1, ReadCount, Data);
-        Data++;
+    int i;
 
-        // V(S); // Освобождение
-        //LeaveCriticalSection(&cs);
+    for (i = 0; i < 5; i++) 
+    {
+        Sleep(rand() % 1100 + 1000);
+        WaitForSingleObject(Access, INFINITE);
+        printf("Writer #%d starts writing. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
+        Sleep(300);
+        Data++;
+        printf("Writer #%d ends writing. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
         ReleaseSemaphore(Access, 1, NULL);
     }
     ExitThread(EXIT_SUCCESS);
