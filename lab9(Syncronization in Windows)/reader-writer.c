@@ -8,8 +8,8 @@ int ReadCount = 0;
 HANDLE Access; // Exclusive data access for writing
 HANDLE RC; // Data access for reading
 
-DWORD WINAPI Reader(LPVOID lpParam);
-DWORD WINAPI Writer(LPVOID lpParam);
+DWORD WINAPI Read(LPVOID lpParam);
+DWORD WINAPI Write(LPVOID lpParam);
 
 int main()
 {
@@ -22,12 +22,11 @@ int main()
 
     for (i = 0; i < 5; i++)
     {
-        threads[i] = CreateThread(NULL, 0, Writer, NULL, 0, NULL);
-        threads[i + 5] = CreateThread(NULL, 0, Reader, NULL, 0, NULL);
+        threads[i] = CreateThread(NULL, 0, Write, NULL, 0, NULL);
+        threads[i + 5] = CreateThread(NULL, 0, Read, NULL, 0, NULL);
     }
 
     WaitForMultipleObjects(10, threads, TRUE, INFINITE);
-
 
     for (i = 0; i < 10; i++)
     {
@@ -39,13 +38,14 @@ int main()
     return 0;
 }
 
-DWORD WINAPI Reader(LPVOID lpParam)
+DWORD WINAPI Read(LPVOID lpParam)
 {
     int i;
 
     for(i = 0; i < 5; i++)
     {
-        Sleep(rand() % 1100 + 1000);
+        //Waiting for 1-2 seconds
+        Sleep(rand() % 1000 + 1000);
         WaitForSingleObject(RC, INFINITE);
         ReadCount++;
 
@@ -53,12 +53,11 @@ DWORD WINAPI Reader(LPVOID lpParam)
         {
             WaitForSingleObject(Access, INFINITE);
         }
-        ReleaseSemaphore(RC, 1, NULL);
-        
+        ReleaseSemaphore(RC, 1, NULL);  
 
         printf("Reader #%d starts reading. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
+        //Waiting for 0,3 second
         Sleep(300);
-
         printf("Reader #%d ends reading. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
         WaitForSingleObject(RC, INFINITE);
         ReadCount--;
@@ -67,25 +66,30 @@ DWORD WINAPI Reader(LPVOID lpParam)
         {
             ReleaseSemaphore(Access, 1, NULL);
         }
+
         ReleaseSemaphore(RC, 1, NULL);
     }
 
     ExitThread(EXIT_SUCCESS);
 }
 
-DWORD WINAPI Writer(LPVOID lpParam)
+DWORD WINAPI Write(LPVOID lpParam)
 {
     int i;
 
     for (i = 0; i < 5; i++) 
     {
-        Sleep(rand() % 1100 + 1000);
+        //Waiting for 1-2 seconds
+        Sleep(rand() % 1000 + 1000);
         WaitForSingleObject(Access, INFINITE);
         printf("Writer #%d starts writing. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
-        Sleep(300);
+        //Waiting for 0,3 second
+        Sleep(3000);
         Data++;
         printf("Writer #%d ends writing. ReadCount = %d, Data = %d\n", 1, ReadCount, Data);
+
         ReleaseSemaphore(Access, 1, NULL);
     }
+
     ExitThread(EXIT_SUCCESS);
 }
