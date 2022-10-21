@@ -1,2 +1,0 @@
-<!--
-document.write('<span id="excs216810"><a href="http://dynamic.exaccess.ru/asp/redr.asp?idc=324015;idvb=563208" target=_blank><img src="http://dynamic.exaccess.ru/banners/Img_324015.jpg" width=468 height=60 border=0></a></span>');//-->
